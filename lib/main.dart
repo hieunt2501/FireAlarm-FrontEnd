@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutterwhatsapp/fire_alarm_home.dart';
+import 'fire_alarm_home.dart';
 
 Future<Null> main() async {
   WidgetsFlutterBinding.ensureInitialized();

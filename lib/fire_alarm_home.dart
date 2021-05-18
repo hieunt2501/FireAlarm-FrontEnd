@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutterwhatsapp/pages/monthly_screen.dart';
-import 'package:flutterwhatsapp/pages/weekly_screen.dart';
-import 'package:flutterwhatsapp/pages/daily_screen.dart';
-import 'package:flutterwhatsapp/pages/hourly_screen.dart';
+import './pages/monthly_screen.dart';
+import './pages/weekly_screen.dart';
+import './pages/daily_screen.dart';
+import './pages/hourly_screen.dart';
 
 class FireAlaramAppHome extends StatefulWidget {
   FireAlaramAppHome();
