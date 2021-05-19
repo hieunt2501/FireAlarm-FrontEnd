@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "514971566639",
+    "project_id": "mdp-bku-2021-4239c",
+    "storage_bucket": "mdp-bku-2021-4239c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514971566639:android:3d65eaaa3f5afd59c7bcda",
+        "android_client_info": {
+          "package_name": "com.bku.firealarm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514971566639-9b6bcrb3tsiq2lcl0drpitl8966bi8kp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVWWhr0pxS9f1y9zZX1NFUkcNnk-v4z6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514971566639-9b6bcrb3tsiq2lcl0drpitl8966bi8kp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514971566639:android:51c153d0e081eaaec7bcda",
+        "android_client_info": {
+          "package_name": "com.bku.mdp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514971566639-9b6bcrb3tsiq2lcl0drpitl8966bi8kp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVWWhr0pxS9f1y9zZX1NFUkcNnk-v4z6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514971566639-9b6bcrb3tsiq2lcl0drpitl8966bi8kp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
