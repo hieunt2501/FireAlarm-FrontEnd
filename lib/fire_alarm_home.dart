@@ -4,14 +4,14 @@ import './pages/weekly_screen.dart';
 import './pages/daily_screen.dart';
 import './pages/hourly_screen.dart';
 
-class FireAlaramAppHome extends StatefulWidget {
-  FireAlaramAppHome();
+class FireAlarmAppHome extends StatefulWidget {
+  FireAlarmAppHome();
 
   @override
-  _FireAlaramAppHomeState createState() => _FireAlaramAppHomeState();
+  _FireAlarmAppHomeState createState() => _FireAlarmAppHomeState();
 }
 
-class _FireAlaramAppHomeState extends State<FireAlaramAppHome>
+class _FireAlarmAppHomeState extends State<FireAlarmAppHome>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
 
@@ -41,7 +41,7 @@ class _FireAlaramAppHomeState extends State<FireAlaramAppHome>
           ],
         ),
         actions: <Widget>[
-          Icon(Icons.search),
+          // Icon(Icons.search),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5.0),
           ),

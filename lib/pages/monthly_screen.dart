@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:collection';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -12,9 +14,17 @@ class MonthlyScreen extends StatefulWidget {
   _MonthlyScreenState createState() => _MonthlyScreenState();
 }
 
-class _MonthlyScreenState extends State<MonthlyScreen> {
-  Future<List<Temperature>> _temperatureData;
+class _MonthlyScreenState extends State<MonthlyScreen>
+    with AutomaticKeepAliveClientMixin<MonthlyScreen> {
+  Future<List<Temperature>> _temperatureData; // temperature data list
+  HashMap dataProp = new HashMap<String, double>(); // data props for passing
+  List<String> labelList;
+  List<double> temperatureList;
 
+  // boolean to keep state alive
+  bool get wantKeepAlive => true;
+
+  // fetch temperature data from API
   Future<List<Temperature>> fetchTemperature() async {
     var response = await http.get(
         Uri.https(APIS.baseResourceUrl, APIS.deviceLogs, {"roomDeviceId": "7"}),
@@ -32,17 +42,24 @@ class _MonthlyScreenState extends State<MonthlyScreen> {
     }
   }
 
+  // simutaneously call fetch data every 5 seconds
+  void setUpTimedFetch() {
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      setState(() {
+        _temperatureData = fetchTemperature();
+      });
+    });
+  }
+
   @override
   void initState() {
     super.initState();
-
-    // init temperature list
-    _temperatureData = fetchTemperature();
-    setState(() {});
+    setUpTimedFetch();
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return AspectRatio(
       aspectRatio: 1.2,
       child: Container(
@@ -50,7 +67,12 @@ class _MonthlyScreenState extends State<MonthlyScreen> {
           future: _temperatureData,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return MonitorBaseScreen(temperatureData: snapshot.data);
+              processData(snapshot.data);
+              return MonitorBaseScreen(
+                  temperatureData: this.temperatureList,
+                  labelData: this.labelList,
+                  getTitle: getTitle,
+                  dataProp: this.dataProp);
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
@@ -63,8 +85,35 @@ class _MonthlyScreenState extends State<MonthlyScreen> {
             );
           },
         ),
-        // child: MonitorBaseScreen(),
       ),
     );
+  }
+
+  // callback for setting chart x bar
+  String getTitle(double value) {
+    return this.labelList[value.toInt()];
+  }
+
+  // process data when successfully get data
+  void processData(List<Temperature> data) {
+    double maxTemp = 0;
+    double maxLength = data.length.toDouble();
+    temperatureList = [];
+    labelList = [];
+
+    var temp;
+    double sum = 0;
+
+    for (int i = 0; i < data.length; i++) {
+      temp = data[i].temperature;
+      if (maxTemp < temp) maxTemp = temp;
+      sum += temp;
+      this.temperatureList.insert(0, temp);
+      this.labelList.insert(0, data[i].time.hour.toString());
+    }
+
+    this.dataProp['maxTemp'] = maxTemp;
+    this.dataProp['maxLength'] = maxLength;
+    this.dataProp['avgTemp'] = sum / data.length;
   }
 }
