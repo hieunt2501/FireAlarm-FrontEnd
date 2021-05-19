@@ -1,0 +1,9 @@
+class APIS {
+  static final String baseResourceUrl =
+      "resourceservermultiproject.azurewebsites.net";
+
+  static final String userToken =
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJuaGFuQGVtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiMDEyMyIsIm5iZiI6MTYyMTQyMjY4NSwiZXhwIjoxNjIxOTQxMDg1LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo1MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSJ9.G9A3pSsYn-K1elkbhsF2APYyqOP6r7n2G85oA00Vpfk";
+
+  static var deviceLogs = "/api/monitor/deviceLogs";
+}

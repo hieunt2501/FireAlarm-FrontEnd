@@ -1,7 +1,12 @@
+import 'package:firealarm/models/temperature.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class TimeChart extends StatefulWidget {
+  final List<Temperature> temperatureData;
+
+  TimeChart({Key key, @required this.temperatureData}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => TimeChartState();
 }
@@ -10,12 +15,15 @@ class TimeChartState extends State<TimeChart> {
   // List<int> verticalAxis;
   bool tempPressed;
   bool gasPressed;
+  double maxTemp;
+  double maxLength;
+  List<FlSpot> spotList;
 
   @override
   void initState() {
     super.initState();
-    this.tempPressed = true;
-    this.gasPressed = true;
+    initData();
+    // this.spotList = makeSpotList();
   }
 
   @override
@@ -34,9 +42,9 @@ class TimeChartState extends State<TimeChart> {
                 Container(
                   height: 300,
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 16.0, left: 6.0),
+                    padding: const EdgeInsets.only(right: 16.0, left: 16.0),
                     child: LineChart(
-                      sampleData1(),
+                      lineChartData(),
                       swapAnimationDuration: const Duration(milliseconds: 250),
                     ),
                   ),
@@ -93,7 +101,7 @@ class TimeChartState extends State<TimeChart> {
     );
   }
 
-  LineChartData sampleData1() {
+  LineChartData lineChartData() {
     return LineChartData(
       lineTouchData: LineTouchData(
         touchTooltipData: LineTouchTooltipData(
@@ -106,7 +114,7 @@ class TimeChartState extends State<TimeChart> {
         show: true,
         drawHorizontalLine: false,
         drawVerticalLine: true,
-        verticalInterval: 2,
+        verticalInterval: 1,
       ),
       titlesData: FlTitlesData(
         bottomTitles: SideTitles(
@@ -119,23 +127,7 @@ class TimeChartState extends State<TimeChart> {
           ),
           margin: 10,
           getTitles: (value) {
-            switch (value.toInt()) {
-              case 2:
-                return '13h';
-              case 4:
-                return '14h';
-              case 6:
-                return '15h';
-              case 6:
-                return '15h';
-              case 8:
-                return '16h';
-              case 10:
-                return '17h';
-              case 12:
-                return '18h';
-            }
-            return '';
+            return getTitle(value);
           },
         ),
         leftTitles: SideTitles(
@@ -158,7 +150,7 @@ class TimeChartState extends State<TimeChart> {
           //   }
           //   return '';
           // },
-          // margin: 8,
+          // margin: 0.2,
           // reservedSize: 30,
         ),
       ),
@@ -181,22 +173,20 @@ class TimeChartState extends State<TimeChart> {
         ),
       ),
       minX: 0,
-      maxX: 14,
-      maxY: 70,
+      maxX: this.maxLength,
+      maxY: this.maxTemp + 20,
       minY: 0,
-      lineBarsData: linesBarData1(),
+      lineBarsData: linesBarData(),
     );
   }
 
-  List<LineChartBarData> linesBarData1() {
+  List<LineChartBarData> linesBarData() {
     LineChartBarData lineChartBarData1 = LineChartBarData(
+      // spots: this.spotList,
       spots: [
-        FlSpot(1, 40),
-        FlSpot(3, 45),
-        FlSpot(7, 30),
-        FlSpot(10, 45),
-        FlSpot(12, 50),
-        FlSpot(13, 25),
+        FlSpot(1, 35),
+        FlSpot(2, 35),
+        FlSpot(3, 35),
       ],
       isCurved: true,
       colors: [
@@ -213,12 +203,12 @@ class TimeChartState extends State<TimeChart> {
     );
     LineChartBarData lineChartBarData2 = LineChartBarData(
       spots: [
-        FlSpot(1, 35),
-        FlSpot(3, 34.4),
-        FlSpot(7, 37),
-        FlSpot(10, 37.5),
-        FlSpot(12, 38),
-        FlSpot(13, 37),
+        // FlSpot(1, 35),
+        // FlSpot(3, 34.4),
+        // FlSpot(7, 37),
+        // FlSpot(10, 37.5),
+        // FlSpot(12, 38),
+        // FlSpot(13, 37),
       ],
       isCurved: true,
       colors: [
@@ -258,5 +248,25 @@ class TimeChartState extends State<TimeChart> {
     } else
       result.add(lineChartBarData3);
     return result;
+  }
+
+  void initData() {
+    this.tempPressed = true;
+    this.gasPressed = true;
+    this.maxTemp = 0;
+    this.spotList = [];
+    this.maxLength = widget.temperatureData.length.toDouble();
+
+    var temp;
+    for (int i = 0; i < widget.temperatureData.length; i++) {
+      temp = widget.temperatureData[i].temperature;
+      this.spotList.add(FlSpot(i.toDouble(), temp));
+      if (this.maxTemp < temp) this.maxTemp = temp;
+      print(widget.temperatureData[i].time);
+    }
+  }
+
+  String getTitle(double value) {
+    return (widget.temperatureData[value.toInt()].time.hour).toString() + 'h';
   }
 }

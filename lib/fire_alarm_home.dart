@@ -14,13 +14,11 @@ class FireAlaramAppHome extends StatefulWidget {
 class _FireAlaramAppHomeState extends State<FireAlaramAppHome>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
-  bool showFab = true;
 
   @override
   void initState() {
     super.initState();
-
-    _tabController = TabController(vsync: this, initialIndex: 1, length: 4);
+    _tabController = TabController(vsync: this, initialIndex: 0, length: 4);
     _tabController.addListener(() {
       setState(() {});
     });

@@ -1,7 +1,13 @@
+import 'package:firealarm/models/temperature.dart';
 import 'package:flutter/material.dart';
 import '../models/time_series_chart.dart';
 
 class MonitorBaseScreen extends StatelessWidget {
+  final List<Temperature> temperatureData;
+
+  MonitorBaseScreen({Key key, @required this.temperatureData})
+      : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -90,7 +96,9 @@ class MonitorBaseScreen extends StatelessWidget {
               const SizedBox(
                 height: 2,
               ),
-              TimeChart(),
+              TimeChart(
+                temperatureData: this.temperatureData,
+              ),
               Container(
                 child: Row(
                   children: <Widget>[
