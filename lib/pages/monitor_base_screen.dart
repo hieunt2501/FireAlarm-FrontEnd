@@ -1,12 +1,23 @@
+// import 'package:firealarm/models/temperature.dart';
 import 'package:firealarm/models/temperature.dart';
 import 'package:flutter/material.dart';
 import '../models/time_series_chart.dart';
 
 class MonitorBaseScreen extends StatelessWidget {
-  final List<Temperature> temperatureData;
+  final List<double> temperatureData; // temperature data list
+  final List<double> gasData; // temperature data list
+  final List<String> labelData;
+  final getTitle; // callback function for setting
+  final dataProp; // data properties
 
-  MonitorBaseScreen({Key key, @required this.temperatureData})
-      : super(key: key);
+  MonitorBaseScreen({
+    Key key,
+    @required this.temperatureData,
+    @required this.gasData,
+    @required this.labelData,
+    @required this.getTitle,
+    @required this.dataProp,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +27,9 @@ class MonitorBaseScreen extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.lightGreen,
+              Colors.lightGreen[400],
               Colors.lightGreen[100],
+              Colors.lightGreen[400],
             ],
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
@@ -26,10 +38,10 @@ class MonitorBaseScreen extends StatelessWidget {
         child: Container(
           child: Column(
             children: <Widget>[
+              // Average box
               Container(
                 height: 50,
                 decoration: BoxDecoration(
-                  // borderRadius: BorderRadius.all(Radius.circular(10)),
                   gradient: LinearGradient(
                     colors: [
                       Colors.blueGrey[900],
@@ -39,6 +51,7 @@ class MonitorBaseScreen extends StatelessWidget {
                     end: Alignment.topCenter,
                   ),
                 ),
+                // Average child
                 child: Column(
                   children: <Widget>[
                     Text(
@@ -55,10 +68,10 @@ class MonitorBaseScreen extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         const SizedBox(
-                          width: 60,
+                          width: 30,
                         ),
                         Text(
-                          "Temperature: 40",
+                          "Temperature: " + dataProp['avgTemp'].toString(),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -66,10 +79,10 @@ class MonitorBaseScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          width: 80,
+                          width: 50,
                         ),
                         Text(
-                          "Gas: 60",
+                          "Gas: " + dataProp['avgGas'].toString(),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -98,6 +111,13 @@ class MonitorBaseScreen extends StatelessWidget {
               ),
               TimeChart(
                 temperatureData: this.temperatureData,
+                gasData: this.gasData,
+                labelData: this.labelData,
+                getTitle: this.getTitle,
+                dataProp: this.dataProp,
+              ),
+              SizedBox(
+                height: 50,
               ),
               Container(
                 child: Row(
