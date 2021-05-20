@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'fire_alarm_home.dart';
+import 'screens/login_screen.dart';
 
 Future<Null> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,7 +11,7 @@ Future<Null> main() async {
   bool _result = true;
 
   if (_result) {
-    _defaultHome = FireAlarmAppHome();
+    _defaultHome = LoginScreen();
   }
   runApp(new MyApp());
 }
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
-        '/': (BuildContext context) => FireAlarmAppHome(),
+        '/': (BuildContext context) => LoginScreen(),
       },
     );
   }
