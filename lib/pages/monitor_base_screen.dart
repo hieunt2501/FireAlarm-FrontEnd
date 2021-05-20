@@ -5,6 +5,7 @@ import '../models/time_series_chart.dart';
 
 class MonitorBaseScreen extends StatelessWidget {
   final List<double> temperatureData; // temperature data list
+  final List<double> gasData; // temperature data list
   final List<String> labelData;
   final getTitle; // callback function for setting
   final dataProp; // data properties
@@ -12,6 +13,7 @@ class MonitorBaseScreen extends StatelessWidget {
   MonitorBaseScreen({
     Key key,
     @required this.temperatureData,
+    @required this.gasData,
     @required this.labelData,
     @required this.getTitle,
     @required this.dataProp,
@@ -66,7 +68,7 @@ class MonitorBaseScreen extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         const SizedBox(
-                          width: 60,
+                          width: 30,
                         ),
                         Text(
                           "Temperature: " + dataProp['avgTemp'].toString(),
@@ -77,10 +79,10 @@ class MonitorBaseScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(
-                          width: 80,
+                          width: 50,
                         ),
                         Text(
-                          "Gas: 60",
+                          "Gas: " + dataProp['avgGas'].toString(),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -109,9 +111,13 @@ class MonitorBaseScreen extends StatelessWidget {
               ),
               TimeChart(
                 temperatureData: this.temperatureData,
+                gasData: this.gasData,
                 labelData: this.labelData,
                 getTitle: this.getTitle,
                 dataProp: this.dataProp,
+              ),
+              SizedBox(
+                height: 50,
               ),
               Container(
                 child: Row(

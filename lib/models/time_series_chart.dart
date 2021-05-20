@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class TimeChart extends StatefulWidget {
   final List<double> temperatureData; // temperature data list
+  final List<double> gasData; // temperature data list
   final List<String> labelData; // temperature data list
   final getTitle; // callback function to get chart x label
   final dataProp; //data properties
@@ -11,6 +12,7 @@ class TimeChart extends StatefulWidget {
   TimeChart({
     Key key,
     @required this.temperatureData,
+    @required this.gasData,
     @required this.labelData,
     @required this.getTitle,
     @required this.dataProp,
@@ -25,7 +27,8 @@ class TimeChartState extends State<TimeChart> {
   bool gasPressed;
   double maxTemp;
   double maxLength;
-  List<FlSpot> spotList;
+  List<FlSpot> tempSpotList;
+  List<FlSpot> gasSpotList;
 
   @override
   void initState() {
@@ -35,70 +38,75 @@ class TimeChartState extends State<TimeChart> {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.0,
-      child: Container(
-        child: Stack(
+    return Center(
+      // aspectRatio: 1.2,
+      child: Center(
+        child: Column(
           children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+            Stack(
               children: <Widget>[
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 300,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 16.0, left: 16.0),
-                    child: LineChart(
-                      lineChartData(),
-                      swapAnimationDuration: const Duration(milliseconds: 250),
-                    ),
-                  ),
-                ),
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    Container(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 80, top: 30, bottom: 20),
-                        child: ElevatedButton(
-                          child: Text("Temp"),
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: Size(80, 40),
-                            primary: this.tempPressed
-                                ? Colors.transparent
-                                : Colors.grey,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              this.tempPressed = !this.tempPressed;
-                            });
-                          },
-                        ),
-                      ),
+                    const SizedBox(
+                      height: 10,
                     ),
                     Container(
+                      height: 350,
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 85, top: 30, bottom: 20),
-                        child: ElevatedButton(
-                          child: Text("Gas"),
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: Size(80, 40),
-                            primary: this.gasPressed
-                                ? Colors.transparent
-                                : Colors.grey,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              this.gasPressed = !this.gasPressed;
-                            });
-                          },
+                        padding: const EdgeInsets.only(right: 16.0, left: 16.0),
+                        child: LineChart(
+                          lineChartData(),
+                          swapAnimationDuration:
+                              const Duration(milliseconds: 250),
                         ),
                       ),
                     ),
                   ],
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: <Widget>[
+                Center(
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 50),
+                    alignment: Alignment.center,
+                    child: ElevatedButton(
+                      child: Text("Temp"),
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(80, 40),
+                        primary:
+                            this.tempPressed ? Colors.transparent : Colors.grey,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          this.tempPressed = !this.tempPressed;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 85),
+                    child: ElevatedButton(
+                      child: Text("Gas"),
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(80, 40),
+                        primary:
+                            this.gasPressed ? Colors.transparent : Colors.grey,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          this.gasPressed = !this.gasPressed;
+                        });
+                      },
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -169,7 +177,7 @@ class TimeChartState extends State<TimeChart> {
 
   List<LineChartBarData> linesBarData() {
     LineChartBarData temperatureData = LineChartBarData(
-      spots: this.spotList,
+      spots: this.tempSpotList,
       isCurved: true,
       colors: [
         Colors.blue[800],
@@ -184,14 +192,7 @@ class TimeChartState extends State<TimeChart> {
       ),
     );
     LineChartBarData gasData = LineChartBarData(
-      spots: [
-        // FlSpot(1, 35),
-        // FlSpot(3, 34.4),
-        // FlSpot(7, 37),
-        // FlSpot(10, 37.5),
-        // FlSpot(12, 38),
-        // FlSpot(13, 37),
-      ],
+      spots: this.gasSpotList,
       isCurved: true,
       colors: [
         const Color(0xffaa4cfc),
@@ -238,11 +239,17 @@ class TimeChartState extends State<TimeChart> {
     this.gasPressed = true;
     this.maxTemp = widget.dataProp['maxTemp'];
     this.maxLength = widget.dataProp['maxLength'];
-    this.spotList = [];
+    this.tempSpotList = [];
+    this.gasSpotList = [];
 
     int length = widget.temperatureData.length;
     for (int i = 0; i < length; i++) {
-      this.spotList.add(FlSpot(i.toDouble(), widget.temperatureData[i]));
+      this.tempSpotList.add(FlSpot(i.toDouble(), widget.temperatureData[i]));
+    }
+
+    length = widget.gasData.length;
+    for (int i = 0; i < length; i++) {
+      this.gasSpotList.add(FlSpot(i.toDouble(), widget.gasData[i]));
     }
   }
 }
