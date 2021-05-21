@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
 FLUTTER_ROOT=/home/nguyenhuy1209/snap/flutter/common/flutter
-FLUTTER_APPLICATION_PATH=/home/nguyenhuy1209/Documents/Workspace/MDP/new
+FLUTTER_APPLICATION_PATH=/home/nguyenhuy1209/Documents/Workspace/MDP/FireAlarm-FrontEnd
 FLUTTER_TARGET=lib/main.dart
 FLUTTER_BUILD_DIR=build
 SYMROOT=${SOURCE_ROOT}/../build/ios

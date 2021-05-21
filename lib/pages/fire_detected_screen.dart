@@ -1,9 +1,7 @@
-import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
-import '../api_list.dart';
+import '../api.dart';
 
 import '../icon/bell-slash-icon.dart' ;
 import '../icon/temperature-icon.dart';
@@ -155,17 +153,24 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                             ),
                             padding: EdgeInsets.all(30.0),
                           ),
-                          RawMaterialButton(
-                            fillColor: Color.fromRGBO(240,131,4,1),
-                            onPressed: () {
-                              APIS().turnOnDevice("14");
+                          LiteRollingSwitch(
+                            value: false,
+                            textOn: 'On',
+                            textOff: 'Off',
+                            colorOn: Colors.cyan,
+                            colorOff: Colors.red[400],
+                            iconOn: Icons.check,
+                            iconOff: Icons.power_settings_new,
+                            animationDuration: Duration(milliseconds: 500),
+                            onChanged: (bool state) {
+                              if (state){
+                                APIS().turnOnDevice("14");
+                              }
+                              else {
+                                APIS().turnOffDevice("14");
+                              }
+                              print('turned ${(state) ? 'yes' : 'no'}');
                             },
-                            shape: CircleBorder(),
-                            child: Icon(
-                              Water.water,
-                              size: 30,
-                            ),
-                            padding: EdgeInsets.all(30.0),
                           ),
                         ],
                       ),

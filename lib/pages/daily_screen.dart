@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:firealarm/models/gas.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import '../api_list.dart';
+import '../api.dart';
 import 'package:firealarm/models/temperature.dart';
 import '../pages/monitor_base_screen.dart';
 

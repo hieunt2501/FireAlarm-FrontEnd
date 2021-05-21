@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/nguyenhuy1209/Documents/Workspace/MDP/new/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-ro/values-ro.xml",
+            "outputFile": "/home/nguyenhuy1209/Documents/Workspace/MDP/FireAlarm-FrontEnd/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-ro/values-ro.xml",
             "map": [
                 {
                     "source": "/home/nguyenhuy1209/.gradle/caches/transforms-2/files-2.1/06d8d126b787885cd10ed57718e040d7/jetified-firebase-messaging-22.0.0/res/values-ro/values.xml",

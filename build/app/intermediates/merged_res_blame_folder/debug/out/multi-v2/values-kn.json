@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/nguyenhuy1209/Documents/Workspace/MDP/new/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-kn/values-kn.xml",
+            "outputFile": "/home/nguyenhuy1209/Documents/Workspace/MDP/FireAlarm-FrontEnd/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-kn/values-kn.xml",
             "map": [
                 {
                     "source": "/home/nguyenhuy1209/.gradle/caches/transforms-2/files-2.1/b0a2e7c2b2fc441a6fb7438a9d0db41d/jetified-play-services-basement-17.0.0/res/values-kn/values.xml",

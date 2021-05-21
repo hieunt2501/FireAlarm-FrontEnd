@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/nguyenhuy1209/Documents/Workspace/MDP/new/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/home/nguyenhuy1209/Documents/Workspace/MDP/FireAlarm-FrontEnd/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
-                    "source": "/home/nguyenhuy1209/Documents/Workspace/MDP/new/android/app/src/main/res/values/styles.xml",
+                    "source": "/home/nguyenhuy1209/Documents/Workspace/MDP/FireAlarm-FrontEnd/android/app/src/main/res/values/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/home/nguyenhuy1209/Documents/Workspace/MDP/new/build/app/generated/res/google-services/debug/values/values.xml",
+                    "source": "/home/nguyenhuy1209/Documents/Workspace/MDP/FireAlarm-FrontEnd/build/app/generated/res/google-services/debug/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",
