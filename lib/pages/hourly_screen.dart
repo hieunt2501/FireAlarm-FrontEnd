@@ -39,7 +39,11 @@ class _HourlyScreenState extends State<HourlyScreen>
 
       List<Temperature> result =
           body.map((dynamic item) => Temperature.fromJson(item)).toList();
-
+      print('Temperature: ${result[0].temperature}');
+      print('Name: ${result[0].name}');
+      print('Unit: ${result[0].unit}');
+      print('Time: ${result[0].time}');
+      print('');
       return result;
     } else {
       throw Exception('Failed to load data');

@@ -3,7 +3,21 @@ import './pages/monthly_screen.dart';
 import './pages/weekly_screen.dart';
 import './pages/daily_screen.dart';
 import './pages/hourly_screen.dart';
+import './pages/fire_detected_screen.dart';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    'high_importance_channel', // id
+    'High Importance Notifications', // title
+    'This channel is used for important notifications.', // description
+    importance: Importance.high,
+    playSound: true);
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+    
 class FireAlarmAppHome extends StatefulWidget {
   FireAlarmAppHome();
 
@@ -17,6 +31,39 @@ class _FireAlarmAppHomeState extends State<FireAlarmAppHome>
 
   @override
   void initState() {
+      FirebaseMessaging.onMessage.listen((RemoteMessage message){
+      print('#####################################################');
+      print('A message just showed up :  ${message.data}');
+      print(message.notification.title);
+      print(message.notification.body);
+      print('#####################################################');
+      
+      RemoteNotification notification = message.notification;
+      AndroidNotification android = message.notification?.android;
+      if (notification != null && android != null) {
+        flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+              channel.id,
+              channel.name,
+              channel.description,
+              importance: Importance.high,
+              color: Colors.blue,
+              playSound: true,
+              icon: '@mipmap/ic_launcher',
+            ),
+          )
+        );
+      }
+
+      if (message.notification.title == "Fire detected!"){
+        Navigator.push(context, MaterialPageRoute(builder: (context) => FireDetectionScreen()));
+      }
+    });
+
     super.initState();
     _tabController = TabController(vsync: this, initialIndex: 0, length: 4);
     _tabController.addListener(() {
