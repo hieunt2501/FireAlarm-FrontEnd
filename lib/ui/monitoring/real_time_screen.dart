@@ -4,19 +4,19 @@ import 'dart:convert';
 import 'package:firealarm/models/gas.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import '../api.dart';
+import '../../constants/api.dart';
 import 'package:firealarm/models/temperature.dart';
-import '../pages/monitor_base_screen.dart';
+import 'monitor_base_screen.dart';
 
-class DailyScreen extends StatefulWidget {
-  DailyScreen();
+class RealTimeScreen extends StatefulWidget {
+  RealTimeScreen();
 
   @override
-  _DailyScreenState createState() => _DailyScreenState();
+  _HourlyScreenState createState() => _HourlyScreenState();
 }
 
-class _DailyScreenState extends State<DailyScreen>
-    with AutomaticKeepAliveClientMixin<DailyScreen> {
+class _HourlyScreenState extends State<RealTimeScreen>
+    with AutomaticKeepAliveClientMixin<RealTimeScreen> {
   Future<List<Temperature>> _temperatureData; // temperature data list
   Future<List<Gas>> _gasData; // gas data list
 
@@ -39,7 +39,11 @@ class _DailyScreenState extends State<DailyScreen>
 
       List<Temperature> result =
           body.map((dynamic item) => Temperature.fromJson(item)).toList();
-
+      print('Temperature: ${result[0].temperature}');
+      print('Name: ${result[0].name}');
+      print('Unit: ${result[0].unit}');
+      print('Time: ${result[0].time}');
+      print('');
       return result;
     } else {
       throw Exception('Failed to load data');
@@ -77,6 +81,7 @@ class _DailyScreenState extends State<DailyScreen>
   @override
   void initState() {
     super.initState();
+    // _temperatureData = [];
     setUpTimedFetch();
   }
 
@@ -86,7 +91,7 @@ class _DailyScreenState extends State<DailyScreen>
     return AspectRatio(
       aspectRatio: 1.2,
       child: Container(
-        child: FutureBuilder(
+        child: FutureBuilder<List<dynamic>>(
           future: Future.wait([_temperatureData, _gasData]),
           builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
             if (snapshot.hasData) {

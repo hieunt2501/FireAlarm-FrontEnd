@@ -4,19 +4,19 @@ import 'dart:convert';
 import 'package:firealarm/models/gas.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import '../api.dart';
+import '../../constants/api.dart';
 import 'package:firealarm/models/temperature.dart';
-import '../pages/monitor_base_screen.dart';
+import './monitor_base_screen.dart';
 
-class WeeklyScreen extends StatefulWidget {
-  WeeklyScreen();
+class MonthlyScreen extends StatefulWidget {
+  MonthlyScreen();
 
   @override
-  _WeeklyScreenState createState() => _WeeklyScreenState();
+  _MonthlyScreenState createState() => _MonthlyScreenState();
 }
 
-class _WeeklyScreenState extends State<WeeklyScreen>
-    with AutomaticKeepAliveClientMixin<WeeklyScreen> {
+class _MonthlyScreenState extends State<MonthlyScreen>
+    with AutomaticKeepAliveClientMixin<MonthlyScreen> {
   Future<List<Temperature>> _temperatureData; // temperature data list
   Future<List<Gas>> _gasData; // gas data list
 
