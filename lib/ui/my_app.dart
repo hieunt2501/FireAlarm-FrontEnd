@@ -1,5 +1,11 @@
+import 'package:firealarm/ui/smoke_detection/smoke_detected_screen.dart';
 import 'package:flutter/material.dart';
 import '../utils/routes/routes.dart';
+
+import './home_screen/home_screen.dart';
+
+import './fire_detection/fire_detected_screen.dart';      // for testing only
+import './smoke_detection/smoke_detected_screen.dart';    // for testing only
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
@@ -18,6 +24,8 @@ class MyApp extends StatelessWidget {
       // routes: <String, WidgetBuilder>{
       //   '/': (BuildContext context) => FireAlarmAppHome(),
       // },
+      home: HomeScreen()
     );
   }
 }
+ 

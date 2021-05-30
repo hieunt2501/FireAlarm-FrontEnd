@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../fire_detection/fire_detected_screen.dart';
+import '../smoke_detection/smoke_detected_screen.dart';
 import '../monitoring/daily_screen.dart';
 import '../monitoring/real_time_screen.dart';
 import '../monitoring/weekly_screen.dart';
@@ -117,6 +118,11 @@ class _HomeScreenState extends State<HomeScreen>
       if (message.notification.title == "Fire detected!") {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => FireDetectionScreen()));
+      }
+
+      if (message.notification.title == "Smoke detected!") {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => SmokeDetectionScreen()));
       }
     });
   }

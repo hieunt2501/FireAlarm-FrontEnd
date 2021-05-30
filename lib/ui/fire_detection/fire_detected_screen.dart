@@ -7,7 +7,6 @@ import '../../icon/bell-slash-icon.dart';
 import '../../icon/temperature-icon.dart';
 import '../../icon/smoke-icon.dart';
 import '../../icon/phone-icon.dart';
-import '../../icon/water-icon.dart';
 
 class FireDetectionScreen extends StatefulWidget {
   FireDetectionScreen({Key key, this.title}) : super(key: key);
@@ -28,7 +27,7 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
         heightFactor: 1,
         child: Container(
             decoration: BoxDecoration(
-              color: const Color(0xff7c94b6),
+              color: const Color.fromRGBO(255, 15, 0, 1),
             ),
             child: FractionallySizedBox(
               widthFactor: 0.8,
@@ -89,34 +88,34 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                     ),
                     Container(
                         child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          "Is this a false alarm?",
-                          style: TextStyle(
-                            decoration: TextDecoration.none,
-                            color: Color.fromRGBO(0, 0, 0, 1),
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 17,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        RawMaterialButton(
-                          fillColor: Color.fromRGBO(9, 197, 5, 1),
-                          onPressed: () {},
-                          shape: CircleBorder(),
-                          child: Icon(
-                            BellSlash.bell_slash,
-                            size: 20,
-                          ),
-                          padding: EdgeInsets.only(
-                              left: 8, top: 20, right: 12, bottom: 20),
-                        ),
-                      ],
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              "Is this a false alarm?",
+                              style: TextStyle(
+                                decoration: TextDecoration.none,
+                                color: Color.fromRGBO(0, 0, 0, 1),
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 17,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            RawMaterialButton(
+                              fillColor: Color.fromRGBO(9, 197, 5, 1),
+                              onPressed: () {},
+                              shape: CircleBorder(),
+                              child: Icon(
+                                BellSlash.bell_slash,
+                                size: 20,
+                              ),
+                              padding: EdgeInsets.only(
+                                  left: 8, top: 20, right: 12, bottom: 20),
+                            ),
+                          ],
                     )),
                     Container(
                         margin: EdgeInsets.symmetric(horizontal: 10.0),
@@ -145,24 +144,41 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                             ),
                             padding: EdgeInsets.all(30.0),
                           ),
-                          LiteRollingSwitch(
-                            value: false,
-                            textOn: 'On',
-                            textOff: 'Off',
-                            colorOn: Colors.cyan,
-                            colorOff: Colors.red[400],
-                            iconOn: Icons.check,
-                            iconOff: Icons.power_settings_new,
-                            animationDuration: Duration(milliseconds: 500),
-                            onChanged: (bool state) {
-                              if (state) {
-                                APIS().turnOnDevice("14");
-                              } else {
-                                APIS().turnOffDevice("14");
-                              }
-                              print('turned ${(state) ? 'yes' : 'no'}');
-                            },
-                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                'Control the sprinkle',
+                                style: TextStyle(
+                                  decoration: TextDecoration.none,
+                                  color: Color.fromRGBO(0, 0, 0, 1),
+                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(height: 15),
+                              LiteRollingSwitch(
+                                value: false,
+                                textOn: 'On',
+                                textOff: 'Off',
+                                colorOn: Colors.cyan,
+                                colorOff: Colors.red[400],
+                                iconOn: Icons.check,
+                                iconOff: Icons.power_settings_new,
+                                animationDuration: Duration(milliseconds: 500),
+                                onChanged: (bool state) {
+                                  if (state) {
+                                    APIS().turnOnDevice("14");
+                                  } else {
+                                    APIS().turnOffDevice("14");
+                                  }
+                                  print('turned ${(state) ? 'yes' : 'no'}');
+                                },
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ),
