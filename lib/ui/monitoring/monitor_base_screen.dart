@@ -3,20 +3,18 @@ import '../../constants/colors.dart';
 import '../../constants/textStyle.dart';
 import './widgets/time_series_chart.dart';
 
-class MonitorBaseScreen extends StatelessWidget {
+class BaseMonitorScreen extends StatelessWidget {
 // #region Variable declaration
   final List<double> temperatureData; // temperature data list
-  final List<double> gasData; // temperature data list
   final List<String> labelData;
   final getTitle; // callback function for setting
   final dataProp; // data properties
 // #endregion
 
   // Constructor
-  MonitorBaseScreen({
+  BaseMonitorScreen({
     Key key,
     @required this.temperatureData,
-    @required this.gasData,
     @required this.labelData,
     @required this.getTitle,
     @required this.dataProp,
@@ -53,13 +51,12 @@ class MonitorBaseScreen extends StatelessWidget {
             const SizedBox(height: 2),
             TimeChart(
               temperatureData: this.temperatureData,
-              gasData: this.gasData,
               labelData: this.labelData,
               getTitle: this.getTitle,
               dataProp: this.dataProp,
             ),
             SizedBox(height: 50),
-            _buildLegend(),
+            // _buildLegend(),
           ],
         ),
       ),

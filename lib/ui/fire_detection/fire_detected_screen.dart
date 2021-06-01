@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
-import '../../constants/api.dart';
+import '../../services/device_services.dart';
 
 import '../../icon/bell-slash-icon.dart';
 import '../../icon/temperature-icon.dart';
@@ -88,34 +88,34 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                     ),
                     Container(
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              "Is this a false alarm?",
-                              style: TextStyle(
-                                decoration: TextDecoration.none,
-                                color: Color.fromRGBO(0, 0, 0, 1),
-                                fontFamily: 'Roboto',
-                                fontWeight: FontWeight.w700,
-                                fontSize: 17,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            RawMaterialButton(
-                              fillColor: Color.fromRGBO(9, 197, 5, 1),
-                              onPressed: () {},
-                              shape: CircleBorder(),
-                              child: Icon(
-                                BellSlash.bell_slash,
-                                size: 20,
-                              ),
-                              padding: EdgeInsets.only(
-                                  left: 8, top: 20, right: 12, bottom: 20),
-                            ),
-                          ],
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          "Is this a false alarm?",
+                          style: TextStyle(
+                            decoration: TextDecoration.none,
+                            color: Color.fromRGBO(0, 0, 0, 1),
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.w700,
+                            fontSize: 17,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        RawMaterialButton(
+                          fillColor: Color.fromRGBO(9, 197, 5, 1),
+                          onPressed: () {},
+                          shape: CircleBorder(),
+                          child: Icon(
+                            BellSlash.bell_slash,
+                            size: 20,
+                          ),
+                          padding: EdgeInsets.only(
+                              left: 8, top: 20, right: 12, bottom: 20),
+                        ),
+                      ],
                     )),
                     Container(
                         margin: EdgeInsets.symmetric(horizontal: 10.0),
@@ -170,9 +170,9 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                                 animationDuration: Duration(milliseconds: 500),
                                 onChanged: (bool state) {
                                   if (state) {
-                                    APIS().turnOnDevice("14");
+                                    DeviceAPIs.turnOnDevice("14");
                                   } else {
-                                    APIS().turnOffDevice("14");
+                                    DeviceAPIs.turnOffDevice("14");
                                   }
                                   print('turned ${(state) ? 'yes' : 'no'}');
                                 },

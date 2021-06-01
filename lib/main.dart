@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import './ui/my_app.dart';
-import './constants/api.dart';
+import './services/firebase_services.dart';
 
 // Firebase background handling
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -21,7 +21,7 @@ Future<Null> main() async {
     String token = event.toString();
     print(token);
     token = token.toString();
-    APIS().sendTokenToServer(token);
+    FirebaseAPIs.sendTokenToServer(token);
   });
 
   await FirebaseMessaging.instance.getToken().then((value) {

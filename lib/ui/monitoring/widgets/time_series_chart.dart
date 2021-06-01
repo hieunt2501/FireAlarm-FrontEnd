@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 class TimeChart extends StatefulWidget {
   final List<double> temperatureData; // temperature data list
-  final List<double> gasData; // temperature data list
   final List<String> labelData; // temperature data list
   final getTitle; // callback function to get chart x label
   final dataProp; //data properties
@@ -12,7 +11,6 @@ class TimeChart extends StatefulWidget {
   TimeChart({
     Key key,
     @required this.temperatureData,
-    @required this.gasData,
     @required this.labelData,
     @required this.getTitle,
     @required this.dataProp,
@@ -23,8 +21,6 @@ class TimeChart extends StatefulWidget {
 }
 
 class TimeChartState extends State<TimeChart> {
-  bool tempPressed;
-  bool gasPressed;
   double maxTemp;
   double maxLength;
   List<FlSpot> tempSpotList;
@@ -52,7 +48,7 @@ class TimeChartState extends State<TimeChart> {
                       height: 10,
                     ),
                     Container(
-                      height: 350,
+                      height: 420,
                       child: Padding(
                         padding: const EdgeInsets.only(right: 16.0, left: 16.0),
                         child: LineChart(
@@ -66,50 +62,9 @@ class TimeChartState extends State<TimeChart> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: <Widget>[
-                Center(
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 50),
-                    alignment: Alignment.center,
-                    child: ElevatedButton(
-                      child: Text("Temp"),
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(80, 40),
-                        primary:
-                            this.tempPressed ? Colors.transparent : Colors.grey,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          this.tempPressed = !this.tempPressed;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Container(
-                    padding: const EdgeInsets.only(left: 85),
-                    child: ElevatedButton(
-                      child: Text("Gas"),
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(80, 40),
-                        primary:
-                            this.gasPressed ? Colors.transparent : Colors.grey,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          this.gasPressed = !this.gasPressed;
-                        });
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            // SizedBox(
+            //   height: 20,
+            // ),
           ],
         ),
       ),
@@ -133,14 +88,15 @@ class TimeChartState extends State<TimeChart> {
       ),
       titlesData: FlTitlesData(
         bottomTitles: SideTitles(
+          rotateAngle: -60,
           showTitles: true,
-          reservedSize: 22,
+          // reservedSize: 22,
           getTextStyles: (value) => const TextStyle(
             color: Color(0xff72719b),
             fontWeight: FontWeight.bold,
-            fontSize: 16,
+            fontSize: 13,
           ),
-          margin: 10,
+          margin: 20,
           getTitles: (value) {
             return widget.getTitle(value);
           },
@@ -191,52 +147,10 @@ class TimeChartState extends State<TimeChart> {
         show: false,
       ),
     );
-    LineChartBarData gasData = LineChartBarData(
-      spots: this.gasSpotList,
-      isCurved: true,
-      colors: [
-        const Color(0xffaa4cfc),
-      ],
-      barWidth: 3,
-      isStrokeCapRound: true,
-      dotData: FlDotData(
-        show: false,
-      ),
-      belowBarData: BarAreaData(show: false, colors: [
-        const Color(0x00aa4cfc),
-      ]),
-    );
-    LineChartBarData emptyData = LineChartBarData(
-      spots: [],
-      isCurved: true,
-      colors: [
-        const Color(0xffaa4cfc),
-      ],
-      barWidth: 3,
-      isStrokeCapRound: true,
-      dotData: FlDotData(
-        show: false,
-      ),
-      belowBarData: BarAreaData(show: false, colors: [
-        const Color(0x00aa4cfc),
-      ]),
-    );
-
-    List<LineChartBarData> result = [];
-
-    if (this.tempPressed) {
-      result.add(temperatureData);
-    }
-    if (this.gasPressed) {
-      result.add(gasData);
-    } else
-      result.add(emptyData);
-    return result;
+    return [temperatureData];
   }
 
   void initData() {
-    this.tempPressed = true;
-    this.gasPressed = true;
     this.maxTemp = widget.dataProp['maxTemp'];
     this.maxLength = widget.dataProp['maxLength'];
     this.tempSpotList = [];
@@ -245,11 +159,6 @@ class TimeChartState extends State<TimeChart> {
     int length = widget.temperatureData.length;
     for (int i = 0; i < length; i++) {
       this.tempSpotList.add(FlSpot(i.toDouble(), widget.temperatureData[i]));
-    }
-
-    length = widget.gasData.length;
-    for (int i = 0; i < length; i++) {
-      this.gasSpotList.add(FlSpot(i.toDouble(), widget.gasData[i]));
     }
   }
 }

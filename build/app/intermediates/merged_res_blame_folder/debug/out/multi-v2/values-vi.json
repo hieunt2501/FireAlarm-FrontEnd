@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/nguyenhuy1209/Documents/Workspace/MDP/FireAlarm-FrontEnd/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-vi/values-vi.xml",
+            "outputFile": "D:\\Flutter\\FireAlarm\\FireAlarm-FrontEnd\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-vi\\values-vi.xml",
             "map": [
                 {
-                    "source": "/home/nguyenhuy1209/.gradle/caches/transforms-2/files-2.1/06d8d126b787885cd10ed57718e040d7/jetified-firebase-messaging-22.0.0/res/values-vi/values.xml",
+                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-2\\files-2.1\\06d8d126b787885cd10ed57718e040d7\\jetified-firebase-messaging-22.0.0\\res\\values-vi\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -21,24 +21,7 @@
                     }
                 },
                 {
-                    "source": "/home/nguyenhuy1209/.gradle/caches/transforms-2/files-2.1/39ce4472dd11e6b3f514e4380eb80351/core-1.3.0/res/values-vi/values-vi.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "373",
-                        "endColumns": "100",
-                        "endOffsets": "469"
-                    }
-                },
-                {
-                    "source": "/home/nguyenhuy1209/.gradle/caches/transforms-2/files-2.1/b0a2e7c2b2fc441a6fb7438a9d0db41d/jetified-play-services-basement-17.0.0/res/values-vi/values.xml",
+                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-2\\files-2.1\\b0a2e7c2b2fc441a6fb7438a9d0db41d\\jetified-play-services-basement-17.0.0\\res\\values-vi\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -52,6 +35,23 @@
                         "startOffsets": "105",
                         "endColumns": "194",
                         "endOffsets": "295"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-2\\files-2.1\\39ce4472dd11e6b3f514e4380eb80351\\core-1.3.0\\res\\values-vi\\values-vi.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "4",
+                        "startColumns": "4",
+                        "startOffsets": "373",
+                        "endColumns": "100",
+                        "endOffsets": "469"
                     }
                 }
             ]

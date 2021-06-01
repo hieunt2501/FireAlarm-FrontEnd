@@ -1,9 +1,10 @@
+import 'package:firealarm/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
 import '../fire_detection/fire_detected_screen.dart';
 import '../smoke_detection/smoke_detected_screen.dart';
 import '../monitoring/daily_screen.dart';
 import '../monitoring/real_time_screen.dart';
-import '../monitoring/weekly_screen.dart';
+// import '../monitoring/weekly_screen.dart';
 import '../monitoring/monthly_screen.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -29,21 +30,62 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
+  String currentPage;
 
   @override
   void initState() {
     super.initState();
     _onMessage();
     _initTabController();
+    currentPage = Routes.home;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildAppBar(),
-      body: _buildBody(),
+    return WillPopScope(
+        onWillPop: () {
+          Navigator.of(context).pop();
+        },
+        child: Scaffold(
+          appBar: _buildAppBar(),
+          drawer: _buildDrawer(),
+          body: _buildBody(),
+        ));
+  }
+
+// #region Drawer methods
+  Widget _buildDrawer() {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            child: Text('Drawer Header'),
+          ),
+          ListTile(
+            title: Text('Monitoring'),
+            tileColor: currentPage == Routes.home ? Colors.grey : Colors.white,
+            onTap: () {
+              if (currentPage != Routes.home) {
+                currentPage = Routes.home;
+                Navigator.pushNamed(context, Routes.home);
+              }
+            },
+          ),
+          ListTile(
+            title: Text('Profile'),
+            onTap: () {
+              if (currentPage != Routes.profile) {
+                currentPage = Routes.profile;
+                Navigator.pushNamed(context, Routes.profile);
+              }
+            },
+          ),
+        ],
+      ),
     );
   }
+// #endregion
 
 // #region App bar methods
   PreferredSizeWidget _buildAppBar() {
@@ -54,19 +96,11 @@ class _HomeScreenState extends State<HomeScreen>
         controller: _tabController,
         indicatorColor: Colors.white,
         tabs: <Widget>[
-          Tab(text: "Hourly"),
+          Tab(text: "Real-Time"),
           Tab(text: "Daily"),
-          Tab(text: "Weekly"),
           Tab(text: "Monthly"),
         ],
       ),
-      actions: <Widget>[
-        // Icon(Icons.search),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5.0),
-        ),
-        Icon(Icons.more_vert)
-      ],
     );
   }
 // #endregion
@@ -78,7 +112,6 @@ class _HomeScreenState extends State<HomeScreen>
       children: <Widget>[
         RealTimeScreen(),
         DailyScreen(),
-        WeeklyScreen(),
         MonthlyScreen(),
       ],
     );
@@ -86,6 +119,7 @@ class _HomeScreenState extends State<HomeScreen>
 // #endregion
 
 // #region General methods
+
   // On receiving Firebase message
   _onMessage() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
@@ -129,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   // initializing tab controller
   _initTabController() {
-    _tabController = TabController(vsync: this, initialIndex: 0, length: 4);
+    _tabController = TabController(vsync: this, initialIndex: 0, length: 3);
     _tabController.addListener(() {
       setState(() {});
     });
