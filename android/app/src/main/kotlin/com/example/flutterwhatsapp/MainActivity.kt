@@ -1,4 +1,4 @@
-package com.example.flutterwhatsapp
+package com.bku.firealarm
 
 import io.flutter.embedding.android.FlutterActivity
 
