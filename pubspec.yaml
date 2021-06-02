@@ -40,6 +40,8 @@ dependencies:
   email_validator: ^2.0.1
   lite_rolling_switch: ^0.1.1
 
+  lite_rolling_switch: ^0.1.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -97,7 +99,11 @@ flutter:
     - family: Water
       fonts:
         - asset: assets/fonts/Water.ttf
+<<<<<<< HEAD
 
   
+=======
+  #
+>>>>>>> 4a92c4986443f5505db3c5029b17c40e823053b9
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

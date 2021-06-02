@@ -26,7 +26,10 @@ class AppColors {
     Colors.blueGrey[800],
   ];
 }
+<<<<<<< HEAD
 
 const Color kPrimaryColor = Color(0x66CA8383);
 const Color kSecondaryColor = Color(0xFF6B0000);
 const Color kText = Color(0xFFA60000);
+=======
+>>>>>>> 4a92c4986443f5505db3c5029b17c40e823053b9
