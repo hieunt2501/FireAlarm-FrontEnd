@@ -23,8 +23,8 @@ class MonitorAPIs {
       print('');
       return result;
     } else {
-      // throw Exception('Failed to load data');
-      return [];
+      throw Exception('Failed to load data');
+      // return [];
     }
   }
 }

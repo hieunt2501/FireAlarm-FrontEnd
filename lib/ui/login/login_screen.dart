@@ -33,7 +33,8 @@ class LoginScreenState extends State<LoginScreen> {
                           padding: EdgeInsets.only(top: 60, bottom: 45),
                           child: Text(
                             "FireAlarm",
-                            style: TextStyle(color: kText, fontSize: 50),
+                            style:
+                                TextStyle(color: AppColors.kText, fontSize: 50),
                           ),
                         ),
                 ),
@@ -50,7 +51,7 @@ class LoginScreenState extends State<LoginScreen> {
                   onPressed: () {},
                   child: Text(
                     "Forgot Password?",
-                    style: TextStyle(color: kText),
+                    style: TextStyle(color: AppColors.kText),
                   ),
                 ),
                 Container(
@@ -64,7 +65,8 @@ class LoginScreenState extends State<LoginScreen> {
                               onPressed: () {},
                               child: Text(
                                 "Sign Up",
-                                style: TextStyle(color: kText, fontSize: 13),
+                                style: TextStyle(
+                                    color: AppColors.kText, fontSize: 13),
                               ),
                             )
                           ],

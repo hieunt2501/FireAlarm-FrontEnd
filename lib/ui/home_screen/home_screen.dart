@@ -5,7 +5,7 @@ import '../smoke_detection/smoke_detected_screen.dart';
 import '../monitoring/daily_screen.dart';
 import '../monitoring/real_time_screen.dart';
 // import '../monitoring/weekly_screen.dart';
-import '../monitoring/monthly_screen.dart';
+import '../monitoring/hourly_screen.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen>
     return WillPopScope(
         onWillPop: () {
           Navigator.of(context).pop();
+          return;
         },
         child: Scaffold(
           appBar: _buildAppBar(),
@@ -97,8 +98,8 @@ class _HomeScreenState extends State<HomeScreen>
         indicatorColor: Colors.white,
         tabs: <Widget>[
           Tab(text: "Real-Time"),
+          Tab(text: "Hourly"),
           Tab(text: "Daily"),
-          Tab(text: "Monthly"),
         ],
       ),
     );
@@ -111,8 +112,8 @@ class _HomeScreenState extends State<HomeScreen>
       controller: _tabController,
       children: <Widget>[
         RealTimeScreen(),
+        HourlyScreen(),
         DailyScreen(),
-        MonthlyScreen(),
       ],
     );
   }

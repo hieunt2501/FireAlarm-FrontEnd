@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'package:firealarm/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:provider/provider.dart';
 import './ui/my_app.dart';
 import './services/firebase_services.dart';
 
@@ -31,5 +33,15 @@ Future<Null> main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 // #endregion
 
-  runApp(new MyApp());
+  // runApp(new MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthProvider>(
+          create: (context) => AuthProvider(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }

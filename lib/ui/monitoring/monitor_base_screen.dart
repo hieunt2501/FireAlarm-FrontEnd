@@ -30,20 +30,14 @@ class BaseMonitorScreen extends StatelessWidget {
           children: <Widget>[
             Container(
               height: 50,
+              width: MediaQuery.of(context).size.width,
               decoration: _buildBoxDecoration(AppColors.avgBar),
               child: Column(
                 children: <Widget>[
                   _buildText("Average", AppTextStyle.avgSyle),
                   const SizedBox(height: 5),
-                  Row(
-                    children: <Widget>[
-                      const SizedBox(width: 30),
-                      _buildText(
-                          "Temperature: " + dataProp['avgTemp'].toString(),
-                          AppTextStyle.tempAvgStyle),
-                      const SizedBox(width: 50),
-                    ],
-                  ),
+                  _buildText("Temperature: " + dataProp['avgTemp'].toString(),
+                      AppTextStyle.tempAvgStyle),
                 ],
               ),
             ),

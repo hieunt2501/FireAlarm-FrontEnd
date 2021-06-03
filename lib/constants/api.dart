@@ -1,15 +1,29 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+// import 'dart:convert';
+// import 'package:http/http.dart' as http;
+// import 'package:flutter/material.dart';
+
+import 'package:firealarm/caches/sharedpref/shared_preference_helper.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class APIs {
+  static SharedPreferenceHelper _sharedPrefsHelper = SharedPreferenceHelper();
+
   static final String baseResourceUrl =
       "resourceservermultiproject.azurewebsites.net";
 
   static final String baseAuthenticationUrl =
       "multiprojectauthenticationserver.azurewebsites.net";
 
-  static final String userToken =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJuaGFuQGVtYWlsLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiMDEyMyIsIm5iZiI6MTYyMjUzMzM3MCwiZXhwIjoxNjc0MzczMzcwLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo1MDAxIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSJ9.9K39WGJMfGdJGfuYazNxZiH1vL_tpbcstkQE07nmR9o";
+  static String _userToken = "";
+
+  static String get userToken {
+    _sharedPrefsHelper.userToken.then((token) {
+      if (token != null) {
+        _userToken = token;
+      }
+    });
+    return _userToken;
+  }
 
   static var deviceLogs = "/api/monitor/deviceLogs";
   static var myDevices = "/api/account/myDevices";

@@ -1,3 +1,4 @@
+import 'package:firealarm/constants/colors.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_ui_challenges/core/presentation/res/assets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,9 +14,10 @@ class ProfileScreen extends StatelessWidget {
     return WillPopScope(
         onWillPop: () {
           Navigator.of(context).pop();
+          return;
         },
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.kPrimaryColor,
           appBar: AppBar(
             title: Text(
               "my profile",

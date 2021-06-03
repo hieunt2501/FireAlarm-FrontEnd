@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
-import '../../constants/api.dart';
+// import '../../constants/api.dart';
 
 import '../../icon/bell-slash-icon.dart';
 
@@ -38,20 +38,21 @@ class _SmokeDetectionScreenState extends State<SmokeDetectionScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                        child: Text('Smoke detected!',
-                            style: TextStyle(
-                              decoration: TextDecoration.none,
-                              color: Color(0xff7c94b6),
-                              fontFamily: 'Roboto',
-                              fontWeight: FontWeight.w200,
-                              fontSize: 50,
-                            ),
-                            textAlign: TextAlign.center,
-                            )),
+                        child: Text(
+                      'Smoke detected!',
+                      style: TextStyle(
+                        decoration: TextDecoration.none,
+                        color: Color(0xff7c94b6),
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w200,
+                        fontSize: 50,
+                      ),
+                      textAlign: TextAlign.center,
+                    )),
                     Container(
                         child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
                         Text(
                           "Is this a false alarm?",
                           style: TextStyle(
