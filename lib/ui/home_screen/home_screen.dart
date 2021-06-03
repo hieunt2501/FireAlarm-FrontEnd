@@ -1,12 +1,12 @@
+import 'package:firealarm/providers/drawer_provider.dart';
 import 'package:firealarm/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
 import '../fire_detection/fire_detected_screen.dart';
 import '../smoke_detection/smoke_detected_screen.dart';
 import '../monitoring/daily_screen.dart';
 import '../monitoring/real_time_screen.dart';
-// import '../monitoring/weekly_screen.dart';
 import '../monitoring/hourly_screen.dart';
-
+import 'package:provider/provider.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
@@ -56,34 +56,42 @@ class _HomeScreenState extends State<HomeScreen>
 
 // #region Drawer methods
   Widget _buildDrawer() {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          DrawerHeader(
-            child: Text('Drawer Header'),
+    // String drawerState = "";
+    return Consumer<DrawerProvider>(
+      builder: (_, drawerProviderPref, __) {
+        return Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                child: Text('Drawer Header'),
+              ),
+              ListTile(
+                title: Text('Monitoring'),
+                tileColor: drawerProviderPref.drawerState == Routes.home
+                    ? Colors.grey
+                    : Colors.white,
+                // currentPage == Routes.home ? Colors.grey : Colors.white,
+                onTap: () {
+                  if (drawerProviderPref.drawerState != Routes.home) {
+                    drawerProviderPref.changeDrawer(Routes.home);
+                    Navigator.pushNamed(context, Routes.home);
+                  }
+                },
+              ),
+              ListTile(
+                title: Text('Profile'),
+                onTap: () {
+                  if (drawerProviderPref.drawerState != Routes.profile) {
+                    drawerProviderPref.changeDrawer(Routes.profile);
+                    Navigator.pushNamed(context, Routes.profile);
+                  }
+                },
+              ),
+            ],
           ),
-          ListTile(
-            title: Text('Monitoring'),
-            tileColor: currentPage == Routes.home ? Colors.grey : Colors.white,
-            onTap: () {
-              if (currentPage != Routes.home) {
-                currentPage = Routes.home;
-                Navigator.pushNamed(context, Routes.home);
-              }
-            },
-          ),
-          ListTile(
-            title: Text('Profile'),
-            onTap: () {
-              if (currentPage != Routes.profile) {
-                currentPage = Routes.profile;
-                Navigator.pushNamed(context, Routes.profile);
-              }
-            },
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 // #endregion

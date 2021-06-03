@@ -1,4 +1,4 @@
-import 'package:firealarm/caches/sharedpref/shared_preference_helper.dart';
+// import 'package:firealarm/caches/sharedpref/shared_preference_helper.dart';
 import 'package:firealarm/providers/auth_provider.dart';
 // import 'package:firealarm/ui/smoke_detection/smoke_detected_screen.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SharedPreferenceHelper _sharedPreferenceHelper = SharedPreferenceHelper();
+    // SharedPreferenceHelper _sharedPreferenceHelper = SharedPreferenceHelper();
     return MaterialApp(
         title: "FIRE ALARM",
         theme: new ThemeData(

@@ -1,7 +1,10 @@
 import 'package:firealarm/constants/colors.dart';
+import 'package:firealarm/providers/drawer_provider.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_ui_challenges/core/presentation/res/assets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import '../../utils/routes/routes.dart';
 
 class ProfileScreen extends StatelessWidget {
   static final String path = "lib/src/pages/profile/profile11.dart";
@@ -11,13 +14,15 @@ class ProfileScreen extends StatelessWidget {
       color: Colors.grey.shade600,
       fontSize: 16.0,
     );
+    final drawerProvider = Provider.of<DrawerProvider>(context);
     return WillPopScope(
         onWillPop: () {
+          drawerProvider.changeDrawer(Routes.home);
           Navigator.of(context).pop();
           return;
         },
         child: Scaffold(
-          backgroundColor: AppColors.kPrimaryColor,
+          backgroundColor: Colors.white,
           appBar: AppBar(
             title: Text(
               "my profile",
