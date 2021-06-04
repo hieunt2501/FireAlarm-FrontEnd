@@ -35,6 +35,30 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
+    
+    FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage message){
+      if (message.notification.title == 'Fire detected!') {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => FireDetectionScreen()));
+      }
+      if (message.notification.title == 'Smoke detected!') {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => SmokeDetectionScreen()));
+      }
+    }
+    );
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      if (message.notification.title == 'Fire detected!') {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => FireDetectionScreen()));
+      }
+      if (message.notification.title == 'Smoke detected!') {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => SmokeDetectionScreen()));
+      }
+    });
+
     _onMessage();
     _initTabController();
     currentPage = Routes.home;
