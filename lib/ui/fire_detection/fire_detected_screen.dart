@@ -8,6 +8,27 @@ import '../../icon/temperature-icon.dart';
 import '../../icon/smoke-icon.dart';
 import '../../icon/phone-icon.dart';
 
+Widget _buildSwitch(BuildContext context, bool initState){
+  return LiteRollingSwitch(
+    value: initState,
+    textOn: 'On',
+    textOff: 'Off',
+    colorOn: Colors.cyan,
+    colorOff: Colors.red[400],
+    iconOn: Icons.check,
+    iconOff: Icons.power_settings_new,
+    animationDuration: Duration(milliseconds: 500),
+    onChanged: (bool state) {
+      if (state) {
+        DeviceAPIs.turnOnDevice("14");
+      } else {
+        DeviceAPIs.turnOffDevice("14");
+      }
+      print('turned ${(state) ? 'yes' : 'no'}');
+    },
+  );
+}
+
 class FireDetectionScreen extends StatefulWidget {
   FireDetectionScreen({Key key, this.title}) : super(key: key);
 
@@ -159,24 +180,16 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                                 textAlign: TextAlign.center,
                               ),
                               SizedBox(height: 15),
-                              LiteRollingSwitch(
-                                value: false,
-                                textOn: 'On',
-                                textOff: 'Off',
-                                colorOn: Colors.cyan,
-                                colorOff: Colors.red[400],
-                                iconOn: Icons.check,
-                                iconOff: Icons.power_settings_new,
-                                animationDuration: Duration(milliseconds: 500),
-                                onChanged: (bool state) {
-                                  if (state) {
-                                    DeviceAPIs.turnOnDevice("14");
-                                  } else {
-                                    DeviceAPIs.turnOffDevice("14");
+                              FutureBuilder<bool>(
+                                future: DeviceAPIs.checkDevice("3"),
+                                builder: (BuildContext context, AsyncSnapshot<bool> snapshot){
+                                  if(snapshot.connectionState == ConnectionState.done){
+                                    print(snapshot.data);
+                                    return _buildSwitch(context, snapshot.data);
                                   }
-                                  print('turned ${(state) ? 'yes' : 'no'}');
-                                },
-                              ),
+                                  return _buildSwitch(context, false); // fix this!!!
+                                }
+                              )
                             ],
                           )
                         ],
