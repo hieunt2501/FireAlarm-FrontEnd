@@ -76,6 +76,8 @@ class AuthProvider extends ChangeNotifier {
       _status = Status.Authenticated;
       var token = data['data']['accessToken'];
       _sharedPrefsHelper.setToken(token);
+      _sharedPrefsHelper.setFireDetected(false);
+      _sharedPrefsHelper.setSmokeDetected(false);
       // _sharedPreferences.setString('auth_token', token);
       notifyListeners();
       return true;

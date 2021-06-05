@@ -9,6 +9,7 @@ import '../monitoring/hourly_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:firealarm/caches/sharedpref/shared_preference_helper.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
@@ -182,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen>
             ));
       }
 
-      if (message.notification.title == "Fire detected!") {
+      if (message.notification.title == "Fire detected!" and ) {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => FireDetectionScreen()));
       }

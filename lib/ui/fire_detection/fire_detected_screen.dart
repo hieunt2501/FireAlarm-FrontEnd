@@ -1,33 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
 import '../../services/device_services.dart';
+import '../../constants/utils.dart';
 
 import '../../icon/bell-slash-icon.dart';
 import '../../icon/temperature-icon.dart';
 import '../../icon/smoke-icon.dart';
 import '../../icon/phone-icon.dart';
-
-Widget _buildSwitch(BuildContext context, bool initState){
-  return LiteRollingSwitch(
-    value: initState,
-    textOn: 'On',
-    textOff: 'Off',
-    colorOn: Colors.cyan,
-    colorOff: Colors.red[400],
-    iconOn: Icons.check,
-    iconOff: Icons.power_settings_new,
-    animationDuration: Duration(milliseconds: 500),
-    onChanged: (bool state) {
-      if (state) {
-        DeviceAPIs.turnOnDevice("14");
-      } else {
-        DeviceAPIs.turnOffDevice("14");
-      }
-      print('turned ${(state) ? 'yes' : 'no'}');
-    },
-  );
-}
 
 class FireDetectionScreen extends StatefulWidget {
   FireDetectionScreen({Key key, this.title}) : super(key: key);
@@ -127,7 +106,7 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                         ),
                         RawMaterialButton(
                           fillColor: Color.fromRGBO(9, 197, 5, 1),
-                          onPressed: () {},
+                          onPressed: () {DeviceAPIs.turnOffDevice("3");},
                           shape: CircleBorder(),
                           child: Icon(
                             BellSlash.bell_slash,
@@ -181,13 +160,12 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                               ),
                               SizedBox(height: 15),
                               FutureBuilder<bool>(
-                                future: DeviceAPIs.checkDevice("3"),
+                                future: DeviceAPIs.checkDevice("14"),
                                 builder: (BuildContext context, AsyncSnapshot<bool> snapshot){
                                   if(snapshot.connectionState == ConnectionState.done){
-                                    print(snapshot.data);
-                                    return _buildSwitch(context, snapshot.data);
+                                    return HelperFunction.buildSwitch(context, snapshot.data, "14");
                                   }
-                                  return _buildSwitch(context, false); // fix this!!!
+                                  return CircularProgressIndicator();
                                 }
                               )
                             ],

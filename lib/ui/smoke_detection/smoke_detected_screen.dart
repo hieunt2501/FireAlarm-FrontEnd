@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
-// import '../../constants/api.dart';
+import '../../services/device_services.dart';
+import '../../constants/utils.dart';
 
 import '../../icon/bell-slash-icon.dart';
 
@@ -69,7 +69,7 @@ class _SmokeDetectionScreenState extends State<SmokeDetectionScreen> {
                         ),
                         RawMaterialButton(
                           fillColor: Color.fromRGBO(9, 197, 5, 1),
-                          onPressed: () {},
+                          onPressed: () {DeviceAPIs.turnOffDevice("3");},
                           shape: CircleBorder(),
                           child: Icon(
                             BellSlash.bell_slash,
@@ -96,24 +96,15 @@ class _SmokeDetectionScreenState extends State<SmokeDetectionScreen> {
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(height: 15),
-                          LiteRollingSwitch(
-                            value: false,
-                            textOn: 'On',
-                            textOff: 'Off',
-                            colorOn: Colors.cyan,
-                            colorOff: Colors.red[400],
-                            iconOn: Icons.check,
-                            iconOff: Icons.power_settings_new,
-                            animationDuration: Duration(milliseconds: 500),
-                            onChanged: (bool state) {
-                              // if (state) {
-                              //   APIS().turnOnDevice("14");
-                              // } else {
-                              //   APIS().turnOffDevice("14");
-                              // }
-                              print('turned ${(state) ? 'yes' : 'no'}');
-                            },
-                          ),
+                          FutureBuilder<bool>(
+                            future: DeviceAPIs.checkDevice("14"),
+                            builder: (BuildContext context, AsyncSnapshot<bool> snapshot){
+                              if(snapshot.connectionState == ConnectionState.done){
+                                return HelperFunction.buildSwitch(context, snapshot.data, "14");
+                              }
+                              return CircularProgressIndicator();
+                            }
+                          )
                         ],
                       ),
                     ),

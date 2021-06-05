@@ -5,6 +5,9 @@ class SharedPreferenceHelper {
   static const String is_dark_mode = "is_dark_mode";
   static const String language_code = "language_code";
   static const String user_Token = "user_token";
+  static const String fire_Detected = "fire_Detected";
+  static const String smoke_Detected = "smoke_Detected";
+
 
   SharedPreferenceHelper() {
     _sharedPreference = SharedPreferences.getInstance();
@@ -27,6 +30,30 @@ class SharedPreferenceHelper {
   Future<String> get userToken {
     return _sharedPreference.then((prefs) {
       return prefs.getString(user_Token) ?? null;
+    });
+  }
+
+  Future<void> setFireDetected (bool value){
+    return _sharedPreference.then((prefs) {
+      return prefs.setBool(fire_Detected, value);
+    });
+  }
+
+  Future<bool> get fireDetected {
+    return _sharedPreference.then((prefs) {
+      return prefs.getBool(fire_Detected) ?? null;
+    });
+  }
+
+  Future<void> setSmokeDetected (bool value){
+    return _sharedPreference.then((prefs) {
+      return prefs.setBool(smoke_Detected, value);
+    });
+  }
+
+  Future<bool> get smokeDetected {
+    return _sharedPreference.then((prefs) {
+      return prefs.getBool(smoke_Detected) ?? null;
     });
   }
 

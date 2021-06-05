@@ -15,6 +15,8 @@ class APIs {
       "multiprojectauthenticationserver.azurewebsites.net";
 
   static String _userToken = "";
+  static bool _fireDetected = false;
+  static bool _smokeDetected = false;
 
   static String get userToken {
     _sharedPrefsHelper.userToken.then((token) {
