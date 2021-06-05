@@ -57,6 +57,33 @@ class AuthProvider extends ChangeNotifier {
     return _status;
   }
 
+  Future<bool> signUp(
+    String email,
+    String password,
+    String confirm,
+    String phoneNumber,
+    String address,
+  ) async {
+    var payload = {
+      "email": email,
+      "password": password,
+      "confirmPassword": confirm,
+      "phoneNumber": phoneNumber,
+      "address": address
+    };
+    var url =
+        Uri.https(APIs.baseAuthenticationUrl, "/api/authentication/register");
+    var headers = {
+      'Content-Type': 'application/json; charset=UTF-8',
+    };
+    final response =
+        await http.post(url, headers: headers, body: jsonEncode(payload));
+    print('____________________________________');
+    print(response.statusCode);
+    print(response.body);
+    return response.statusCode == 200;
+  }
+
   Future<bool> signIn(String email, String password) async {
     _status = Status.Authenticating;
     var payload = {"email": email, "password": password};
