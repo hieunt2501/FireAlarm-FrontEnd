@@ -3,12 +3,12 @@ import 'package:firealarm/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import '../utils/routes/routes.dart';
 
-import './home_screen/home_screen.dart';
-import 'login/login_screen.dart'; // for testing only
+import './home_screen/home_screen.dart'; // for testing only
 import 'package:provider/provider.dart';
 
 import './fire_detection/fire_detected_screen.dart'; // for testing only
-import './mydevices/mydevices.dart'; // for testing only
+import './mydevices/mydevices.dart';
+import 'login_signup/login_screen.dart'; // for testing only
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
