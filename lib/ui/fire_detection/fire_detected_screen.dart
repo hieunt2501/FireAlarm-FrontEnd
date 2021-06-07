@@ -9,9 +9,11 @@ import '../../icon/smoke-icon.dart';
 import '../../icon/phone-icon.dart';
 
 class FireDetectionScreen extends StatefulWidget {
-  FireDetectionScreen({Key key, this.title}) : super(key: key);
+  FireDetectionScreen({Key key, this.title, @required this.temperature})
+      : super(key: key);
 
   final String title;
+  final String temperature;
 
   @override
   _FireDetectionScreenState createState() => _FireDetectionScreenState();
@@ -51,38 +53,20 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                             ))),
                     Container(
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            children: [
-                              IconButton(
-                                icon: Icon(Temperature.temperature_high),
-                                onPressed: () {},
-                              ),
-                              Text('100 Celcius',
-                                  style: TextStyle(
-                                    decoration: TextDecoration.none,
-                                    color: Color.fromRGBO(0, 0, 0, 1),
-                                    fontFamily: 'Roboto',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15,
-                                  )),
-                            ],
+                          IconButton(
+                            icon: Icon(Temperature.temperature_high),
+                            onPressed: () {},
                           ),
-                          Row(children: [
-                            IconButton(
-                              icon: const Icon(Smoke.smoke),
-                              onPressed: () {},
-                            ),
-                            Text('100 ppm',
-                                style: TextStyle(
-                                  decoration: TextDecoration.none,
-                                  color: Color.fromRGBO(0, 0, 0, 1),
-                                  fontFamily: 'Roboto',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15,
-                                )),
-                          ])
+                          Text(widget.temperature,
+                              style: TextStyle(
+                                decoration: TextDecoration.none,
+                                color: Color.fromRGBO(0, 0, 0, 1),
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15,
+                              )),
                         ],
                       ),
                     ),
@@ -106,7 +90,9 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                         ),
                         RawMaterialButton(
                           fillColor: Color.fromRGBO(9, 197, 5, 1),
-                          onPressed: () {DeviceAPIs.turnOffDevice("3");},
+                          onPressed: () {
+                            DeviceAPIs.turnOffDevice("3");
+                          },
                           shape: CircleBorder(),
                           child: Icon(
                             BellSlash.bell_slash,
@@ -160,14 +146,16 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                               ),
                               SizedBox(height: 15),
                               FutureBuilder<bool>(
-                                future: DeviceAPIs.checkDevice("14"),
-                                builder: (BuildContext context, AsyncSnapshot<bool> snapshot){
-                                  if(snapshot.connectionState == ConnectionState.done){
-                                    return HelperFunction.buildSwitch(context, snapshot.data, "14");
-                                  }
-                                  return CircularProgressIndicator();
-                                }
-                              )
+                                  future: DeviceAPIs.checkDevice("14"),
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<bool> snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.done) {
+                                      return HelperFunction.buildSwitch(
+                                          context, snapshot.data, "14");
+                                    }
+                                    return CircularProgressIndicator();
+                                  })
                             ],
                           )
                         ],

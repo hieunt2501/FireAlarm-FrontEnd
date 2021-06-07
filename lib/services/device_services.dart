@@ -26,7 +26,6 @@ class DeviceAPIs {
             {"roomDeviceId": deviceID}),
         headers: {"Authorization": APIs.userToken});
     print(response.statusCode);
-    // print(response.body['message']);
     if (response.statusCode == 200) {
       print('Succeed!');
     } else {
@@ -46,9 +45,7 @@ class DeviceAPIs {
     var data = jsonDecode(response.body)["data"];
     for (final e in data){
       if (deviceID == e["id"].toString()){
-        print('AAAAAAA');
         if (e["status"] == "On"){
-          print('Bbbbbbbbb');
           return true;
         }
         if (e["status"] == "Off"){

@@ -23,4 +23,8 @@ class HelperFunction{
       },
     );
   }
+
+  static String extractTemperature(String messBody){
+    return messBody.split(' ')[3];
+  }
 }

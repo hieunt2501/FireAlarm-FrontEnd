@@ -9,7 +9,10 @@ import '../monitoring/hourly_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:firealarm/caches/sharedpref/shared_preference_helper.dart';
+// import 'package:firealarm/caches/sharedpref/shared_preference_helper.dart';
+
+import '../../constants/utils.dart';
+
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
@@ -40,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen>
     FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage message){
       if (message.notification.title == 'Fire detected!') {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => FireDetectionScreen()));
+            MaterialPageRoute(builder: (context) => FireDetectionScreen(temperature:HelperFunction.extractTemperature(message.notification.body))));
       }
       if (message.notification.title == 'Smoke detected!') {
         Navigator.push(context,
@@ -52,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen>
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       if (message.notification.title == 'Fire detected!') {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => FireDetectionScreen()));
+            MaterialPageRoute(builder: (context) => FireDetectionScreen(temperature:HelperFunction.extractTemperature(message.notification.body))));
       }
       if (message.notification.title == 'Smoke detected!') {
         Navigator.push(context,
@@ -183,9 +186,9 @@ class _HomeScreenState extends State<HomeScreen>
             ));
       }
 
-      if (message.notification.title == "Fire detected!" and ) {
+      if (message.notification.title == "Fire detected!") {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => FireDetectionScreen()));
+            MaterialPageRoute(builder: (context) => FireDetectionScreen(temperature:HelperFunction.extractTemperature(message.notification.body))));
       }
 
       if (message.notification.title == "Smoke detected!") {
