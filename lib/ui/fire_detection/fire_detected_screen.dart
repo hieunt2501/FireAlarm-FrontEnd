@@ -8,6 +8,8 @@ import '../../icon/temperature-icon.dart';
 import '../../icon/smoke-icon.dart';
 import '../../icon/phone-icon.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+
 class FireDetectionScreen extends StatefulWidget {
   FireDetectionScreen({Key key, this.title, @required this.temperature})
       : super(key: key);
@@ -122,7 +124,7 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                         children: [
                           RawMaterialButton(
                             fillColor: Color.fromRGBO(240, 131, 4, 1),
-                            onPressed: () {},
+                            onPressed: () => launch("tel://114"),
                             shape: CircleBorder(),
                             child: Icon(
                               Phone.phone,
