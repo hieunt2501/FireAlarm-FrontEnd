@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../services/device_services.dart';
-import '../../constants/utils.dart';
+import '../../utils/helper_function/helper_function.dart';
 
 import '../../icon/bell-slash-icon.dart';
 import '../../icon/temperature-icon.dart';

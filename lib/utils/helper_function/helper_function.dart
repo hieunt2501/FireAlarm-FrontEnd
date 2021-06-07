@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:lite_rolling_switch/lite_rolling_switch.dart';
-import './custom_switch.dart';
-import '../services/device_services.dart';
+import '../custom_widget/custom_switch.dart';
+import '../../services/device_services.dart';
 
 class HelperFunction{
   static Widget buildSwitch(BuildContext context, bool initState, String deviceID){
