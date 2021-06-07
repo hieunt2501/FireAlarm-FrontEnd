@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+// import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+import './custom_switch.dart';
 import '../services/device_services.dart';
 
 class HelperFunction{
@@ -14,12 +15,13 @@ class HelperFunction{
       iconOff: Icons.power_settings_new,
       animationDuration: Duration(milliseconds: 500),
       onChanged: (bool state) {
-        if (state) {
+       if (state) {
           DeviceAPIs.turnOnDevice(deviceID);
+          print('turned on!');
         } else {
           DeviceAPIs.turnOffDevice(deviceID);
+          print('turned off!');
         }
-        print('turned ${(state) ? 'yes' : 'no'}');
       },
     );
   }

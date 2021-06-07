@@ -40,9 +40,7 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
 
-    FirebaseMessaging.instance
-        .getInitialMessage()
-        .then((RemoteMessage message) {
+    FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage message) {
       if (message.notification.title == 'Fire detected!') {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => FireDetectionScreen(temperature:HelperFunction.extractTemperature(message.notification.body))));
