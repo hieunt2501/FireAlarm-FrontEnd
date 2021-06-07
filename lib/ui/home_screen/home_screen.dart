@@ -39,8 +39,10 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     super.initState();
-    
-    FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage message){
+
+    FirebaseMessaging.instance
+        .getInitialMessage()
+        .then((RemoteMessage message) {
       if (message.notification.title == 'Fire detected!') {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => FireDetectionScreen(temperature:HelperFunction.extractTemperature(message.notification.body))));
@@ -49,8 +51,7 @@ class _HomeScreenState extends State<HomeScreen>
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => SmokeDetectionScreen()));
       }
-    }
-    );
+    });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       if (message.notification.title == 'Fire detected!') {
