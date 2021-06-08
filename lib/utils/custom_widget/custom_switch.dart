@@ -21,7 +21,7 @@ import 'dart:math';
 /// don't forget to set them.
 ///
 class LiteRollingSwitch extends StatefulWidget {
-  bool isInitial;
+  bool isInitial = true;
   @required
   final bool value;
   @required
@@ -204,9 +204,11 @@ class _RollingSwitchState extends State<LiteRollingSwitch>
           ? animationController.forward()
           : animationController.reverse();
       if (!widget.isInitial){
+        print('1');
         widget.onChanged(turnState);
       }
       else{
+        print('2');
         widget.isInitial = !widget.isInitial;
       }
     });

@@ -5,7 +5,6 @@ import '../../utils/helper_function/helper_function.dart';
 
 import '../../icon/bell-slash-icon.dart';
 import '../../icon/temperature-icon.dart';
-import '../../icon/smoke-icon.dart';
 import '../../icon/phone-icon.dart';
 
 import 'package:url_launcher/url_launcher.dart';
@@ -73,37 +72,37 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                       ),
                     ),
                     Container(
-                        child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          "Is this a false alarm?",
-                          style: TextStyle(
-                            decoration: TextDecoration.none,
-                            color: Color.fromRGBO(0, 0, 0, 1),
-                            fontFamily: 'Roboto',
-                            fontWeight: FontWeight.w700,
-                            fontSize: 17,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            "Is this a false alarm?",
+                            style: TextStyle(
+                              decoration: TextDecoration.none,
+                              color: Color.fromRGBO(0, 0, 0, 1),
+                              fontFamily: 'Roboto',
+                              fontWeight: FontWeight.w700,
+                              fontSize: 17,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        RawMaterialButton(
-                          fillColor: Color.fromRGBO(9, 197, 5, 1),
-                          onPressed: () {
-                            DeviceAPIs.turnOffDevice("3");
-                          },
-                          shape: CircleBorder(),
-                          child: Icon(
-                            BellSlash.bell_slash,
-                            size: 20,
+                          SizedBox(
+                            height: 10,
                           ),
-                          padding: EdgeInsets.only(
-                              left: 8, top: 20, right: 12, bottom: 20),
-                        ),
-                      ],
+                          RawMaterialButton(
+                            fillColor: Color.fromRGBO(9, 197, 5, 1),
+                            onPressed: () {
+                              DeviceAPIs.turnOffDevice("3");
+                            },
+                            shape: CircleBorder(),
+                            child: Icon(
+                              BellSlash.bell_slash,
+                              size: 20,
+                            ),
+                            padding: EdgeInsets.only(
+                                left: 8, top: 20, right: 12, bottom: 20),
+                          ),
+                        ],
                     )),
                     Container(
                         margin: EdgeInsets.symmetric(horizontal: 10.0),
@@ -161,6 +160,46 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                             ],
                           )
                         ],
+                      ),
+                    ),
+                    Container(
+                      child: RawMaterialButton(
+                        fillColor: Color.fromRGBO(9, 197, 5, 1),
+                        shape: CircleBorder(),
+                        child: Icon(
+                          BellSlash.bell_slash,
+                          size: 20,
+                        ),
+                        padding: EdgeInsets.only(left: 8, top: 20, right: 12, bottom: 20),
+                        onPressed: () {
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            builder: (context) => Container(
+                              height: MediaQuery.of(context).size.height * 0.9,
+                              decoration: new BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: new BorderRadius.only(
+                                  topLeft: const Radius.circular(25.0),
+                                  topRight: const Radius.circular(25.0),
+                                ),
+                              ),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsetsDirectional.only(top: 10, bottom: 40),
+                                    // decoration: BoxDecoration(
+                                    //   border: Border.all(color: Colors.blueAccent)
+                                    // ),
+                                    child: Icon(Icons.arrow_downward, size: 50)
+                                  ),
+                                  Image.asset('assets/images/fire-instructions.png')
+                                ]
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ],
