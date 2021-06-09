@@ -125,6 +125,14 @@ class _HomeScreenState extends State<HomeScreen>
                   }
                 },
               ),
+              ListTile(
+                title: Text('Resource'),
+                onTap: () {
+                  if (drawerProviderPref.drawerState != Routes.resource)
+                    drawerProviderPref.changeDrawer(Routes.resource);
+                  Navigator.pushNamed(context, Routes.resource);
+                },
+              )
             ],
           ),
         );
