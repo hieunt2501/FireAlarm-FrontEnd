@@ -60,7 +60,7 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                             icon: Icon(Temperature.temperature_high),
                             onPressed: () {},
                           ),
-                          Text(widget.temperature,
+                          Text(widget.temperature + '\u1d52C',
                               style: TextStyle(
                                 decoration: TextDecoration.none,
                                 color: Color.fromRGBO(0, 0, 0, 1),
@@ -164,12 +164,15 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                     ),
                     Container(
                       child: RawMaterialButton(
-                        fillColor: Color.fromRGBO(9, 197, 5, 1),
-                        shape: CircleBorder(),
-                        child: Icon(
-                          BellSlash.bell_slash,
-                          size: 20,
-                        ),
+                        constraints: BoxConstraints(minWidth: MediaQuery.of(context).size.width * 0.6),
+                        fillColor: Color.fromRGBO(188, 190, 194, 1),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),),
+                        child: Text('INSTRUCTIONS', 
+                              style: TextStyle(
+                                color: Color.fromRGBO(0, 0, 0, 1),
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 17,)),
                         padding: EdgeInsets.only(left: 8, top: 20, right: 12, bottom: 20),
                         onPressed: () {
                           showModalBottomSheet(
