@@ -1,5 +1,6 @@
 import 'package:firealarm/ui/login_signup/login_screen.dart';
 import 'package:firealarm/ui/login_signup/sign_up_screen.dart';
+import 'package:firealarm/ui/profile/my_profile.dart';
 import 'package:flutter/material.dart';
 import '../../ui/home_screen/home_screen.dart';
 import '../../ui/profile/profile.dart';
@@ -19,6 +20,6 @@ class Routes {
     signup: (BuildContext context) => SignupScreen(),
     login: (BuildContext context) => LoginScreen(),
     home: (BuildContext context) => HomeScreen(),
-    profile: (BuildContext context) => ProfileScreen(),
+    profile: (BuildContext context) => MyProfileScreen(),
   };
 }

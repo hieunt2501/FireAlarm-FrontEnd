@@ -31,4 +31,8 @@ class APIs {
   static var myDevices = "/api/account/myDevices";
   static var turnOnDeviceRoute = "/api/device/turnOnDevice";
   static var turnOffDeviceRoute = "/api/device/turnOffDevice";
+  static var myRooms = "/api/account/myRooms";
+  static var myHouses = "/api/account/myHouses";
+  static var house = "/api/house";
+  static var instruction = "/api/instrucion";
 }

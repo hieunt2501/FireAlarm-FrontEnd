@@ -1,14 +1,18 @@
-class User {
-  String uid;
-  String email;
-  String displayName;
-  String phoneNumber;
-  String photoUrl;
+import 'package:flutter/material.dart';
 
-  User(
-      {this.uid,
-      this.email,
-      this.displayName,
-      this.phoneNumber,
-      this.photoUrl});
+class User {
+  // String uid;
+  String email;
+  // String displayName;
+  String phoneNumber;
+  // String photoUrl;
+
+  User({
+    @required this.email,
+    @required this.phoneNumber,
+  });
+
+  factory User.fromJson(Map json) {
+    return User(email: json['email'], phoneNumber: json['phone']);
+  }
 }

@@ -39,10 +39,16 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     super.initState();
 
-    FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage message) {
+    FirebaseMessaging.instance
+        .getInitialMessage()
+        .then((RemoteMessage message) {
       if (message.notification.title == 'Fire detected!') {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => FireDetectionScreen(temperature:HelperFunction.extractTemperature(message.notification.body))));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => FireDetectionScreen(
+                    temperature: HelperFunction.extractTemperature(
+                        message.notification.body))));
       }
       if (message.notification.title == 'Smoke detected!') {
         Navigator.push(context,
@@ -52,8 +58,12 @@ class _HomeScreenState extends State<HomeScreen>
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       if (message.notification.title == 'Fire detected!') {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => FireDetectionScreen(temperature:HelperFunction.extractTemperature(message.notification.body))));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => FireDetectionScreen(
+                    temperature: HelperFunction.extractTemperature(
+                        message.notification.body))));
       }
       if (message.notification.title == 'Smoke detected!') {
         Navigator.push(context,
@@ -111,6 +121,7 @@ class _HomeScreenState extends State<HomeScreen>
                   if (drawerProviderPref.drawerState != Routes.profile) {
                     drawerProviderPref.changeDrawer(Routes.profile);
                     Navigator.pushNamed(context, Routes.profile);
+                    drawerProviderPref.changeDrawer(Routes.home);
                   }
                 },
               ),
@@ -185,8 +196,12 @@ class _HomeScreenState extends State<HomeScreen>
       }
 
       if (message.notification.title == "Fire detected!") {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => FireDetectionScreen(temperature:HelperFunction.extractTemperature(message.notification.body))));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => FireDetectionScreen(
+                    temperature: HelperFunction.extractTemperature(
+                        message.notification.body))));
       }
 
       if (message.notification.title == "Smoke detected!") {

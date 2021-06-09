@@ -1,4 +1,5 @@
 import 'package:firealarm/caches/sharedpref/shared_preference_helper.dart';
+import 'package:firealarm/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
