@@ -1,5 +1,4 @@
 import 'package:firealarm/caches/sharedpref/shared_preference_helper.dart';
-import 'package:firealarm/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,7 +13,7 @@ enum Status {
   Authenticated,
   Authenticating,
   Unauthenticated,
-  Registering
+  // Registering
 }
 /*
 The UI will depends on the Status to decide which screen/action to be done.
@@ -45,14 +44,14 @@ class AuthProvider extends ChangeNotifier {
     });
   }
 
-  setup() async {
-    _sharedPreferences = await SharedPreferences.getInstance();
-    String token = _sharedPreferences.getString('auth_token') ?? null;
-    if (token != null) {
-      _status = Status.Authenticated;
-      notifyListeners();
-    }
-  }
+  // setup() async {
+  //   _sharedPreferences = await SharedPreferences.getInstance();
+  //   String token = _sharedPreferences.getString('auth_token') ?? null;
+  //   if (token != null) {
+  //     _status = Status.Authenticated;
+  //     notifyListeners();
+  //   }
+  // }
 
   Status get status {
     return _status;

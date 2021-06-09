@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../constants/colors.dart';
 import '../../constants/textStyle.dart';
+import '../../constants/const.dart';
 import './widgets/time_series_chart.dart';
 
 class BaseMonitorScreen extends StatelessWidget {
@@ -25,23 +26,41 @@ class BaseMonitorScreen extends StatelessWidget {
     return AspectRatio(
       aspectRatio: 1.2,
       child: Container(
-        decoration: _buildBoxDecoration(AppColors.normalBackground),
+        decoration: _buildGradientBoxDecoration(AppColors.normalBackground),
         child: Column(
           children: <Widget>[
             Container(
               height: 50,
               width: MediaQuery.of(context).size.width,
-              decoration: _buildBoxDecoration(AppColors.avgBar),
+              decoration: _buildGradientBoxDecoration(AppColors.statBar),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  _buildText("Average", AppTextStyle.avgSyle),
+                  _buildText(
+                      "Average: " +
+                          dataProp['avgTemp'].toString() +
+                          Const.Celsius,
+                      AppTextStyle.avgSyle),
                   const SizedBox(height: 5),
-                  _buildText("Temperature: " + dataProp['avgTemp'].toString(),
-                      AppTextStyle.tempAvgStyle),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      _buildText(
+                          "Min: " +
+                              dataProp['minTemp'].toString() +
+                              Const.Celsius,
+                          AppTextStyle.tempAvgStyle),
+                      _buildText(
+                          "Max: " +
+                              dataProp['maxTemp'].toString() +
+                              Const.Celsius,
+                          AppTextStyle.tempAvgStyle),
+                    ],
+                  ),
                 ],
               ),
             ),
-            _buidStatusBar(),
+            // _buidStatusBar(),
             const SizedBox(height: 2),
             TimeChart(
               temperatureData: this.temperatureData,
@@ -95,13 +114,19 @@ class BaseMonitorScreen extends StatelessWidget {
     );
   }
 
-  BoxDecoration _buildBoxDecoration(List<Color> colors) {
+  BoxDecoration _buildGradientBoxDecoration(List<Color> colors) {
     return BoxDecoration(
       gradient: LinearGradient(
         colors: colors,
         begin: Alignment.bottomCenter,
         end: Alignment.topCenter,
       ),
+    );
+  }
+
+  BoxDecoration _buildBoxDecoration(Color color) {
+    return BoxDecoration(
+      color: color,
     );
   }
 }

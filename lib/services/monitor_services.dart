@@ -6,9 +6,14 @@ import '../constants/api.dart';
 class MonitorAPIs {
   MonitorAPIs._();
 
-  static Future<List<Temperature>> fetchTemperature() async {
+  static Future<List<Temperature>> fetchTemperature(
+      String pageSize, String numberOfRecord) async {
     var response = await http.get(
-        Uri.https(APIs.baseResourceUrl, APIs.deviceLogs, {"roomDeviceId": "7"}),
+        Uri.https(APIs.baseResourceUrl, APIs.deviceLogs, {
+          "roomDeviceId": "7",
+          "pageSize": pageSize,
+          "numberOfRecord": numberOfRecord
+        }),
         headers: {"Authorization": APIs.userToken});
 
     if (response.statusCode == 200) {

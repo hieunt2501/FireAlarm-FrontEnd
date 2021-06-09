@@ -77,7 +77,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
       ),
       body: Container(
           width: double.infinity,
-          decoration: BoxDecoration(color: AppColors.avgBar[1]),
+          decoration: BoxDecoration(color: AppColors.statBar[1]),
           padding: EdgeInsets.fromLTRB(20, 60, 20, 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
