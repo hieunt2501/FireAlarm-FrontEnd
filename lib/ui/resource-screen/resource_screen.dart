@@ -9,6 +9,7 @@ import 'package:toggle_switch/toggle_switch.dart';
 import 'House.dart';
 import 'Room.dart';
 import 'adding_house_form.dart';
+import 'device_screen.dart';
 
 class ResourceScreen extends StatefulWidget {
   @override
@@ -19,6 +20,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
   int current = 0;
   List<House> houses = [];
   List<Room> rooms = [];
+  final Map<String, Map<String,String>> room_devices = {};
 
   Future<void> getHousesAndRooms() async {
     final responseHouse = await http
@@ -37,18 +39,38 @@ class _ResourceScreenState extends State<ResourceScreen> {
         houses = List<House>.from(i1.map((e) => House.fromJson(e)).toList());
         Iterable i2 = json.decode(responseRoom.body)['data'];
         rooms = List<Room>.from(i2.map((e) => Room.fromJson(e)).toList());
-        for (Room r in rooms) {
-          print(r.name);
-          print(r.description);
-        }
+        // for (Room r in rooms) {
+        //   print(r.name);
+        //   print(r.description);
+        // }
       });
     }
+  }
+
+  Future<void> getDevicesforRooms() async {
+      final responseDevies = await http.get(Uri.https(APIs.baseResourceUrl, APIs.myDevices), headers: {
+        "Authorization": APIs.userToken,
+        'Content-Type': 'application/json; charset=UTF-8'
+      });
+      if (responseDevies.statusCode == 200){
+        setState(() {
+          Iterable iterate = json.decode(responseDevies.body)['data'];
+          for (var i in iterate){
+            if (i["device"]["name"] == "Buzzer" || i["device"]["name"] == "Despensor"){
+              room_devices.putIfAbsent(i["room"]["name"], () => {});
+              room_devices[i["room"]["name"]].putIfAbsent(i["id"].toString(), () => i["device"]["name"]);
+            }
+          }
+        });
+        print(room_devices);
+      }
   }
 
   @override
   void initState() {
     super.initState();
     getHousesAndRooms();
+    getDevicesforRooms();
   }
 
   @override
@@ -110,35 +132,51 @@ class _ResourceScreenState extends State<ResourceScreen> {
                                     decoration: BoxDecoration(
                                         border: Border.all(color: Colors.blue)),
                                     alignment: Alignment.centerLeft,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          current == 0
-                                              ? "ID: " +
-                                                  houses[index].id.toString()
-                                              : "",
-                                          style: TextStyle(fontSize: 17),
+                                    child: SizedBox(
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      child: RawMaterialButton(
+                                        onPressed: () => {
+                                          if (current == 0) {}
+                                          else{
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(builder: (context) => DeviceScreen(deviceIdName:room_devices[rooms[index].name])),
+                                            )
+                                          }
+                                        },
+                                        child: Column(
+                                          crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                                current == 0
+                                                    ? "ID: " +
+                                                        houses[index].id.toString()
+                                                    : "",
+                                                style: TextStyle(fontSize: 17),
+                                              ),
+                                              Text(
+                                                current == 0
+                                                    ? houses[index].name
+                                                    : rooms[index].name,
+                                                style: TextStyle(fontSize: 21),
+                                              ),
+                                              Text(
+                                                current == 0
+                                                    ? houses[index].address
+                                                    : "",
+                                                style: TextStyle(fontSize: 19),
+                                              )
+                                          ],
                                         ),
-                                        Text(
-                                          current == 0
-                                              ? houses[index].name
-                                              : rooms[index].name,
-                                          style: TextStyle(fontSize: 21),
-                                        ),
-                                        Text(
-                                          current == 0
-                                              ? houses[index].address
-                                              : "",
-                                          style: TextStyle(fontSize: 19),
-                                        )
-                                      ],
-                                    ),
+                                      ),
+                                    )
+                                  ),
                                   )),
-                            )))
+                            ))
             ],
           )),
       floatingActionButton: FloatingActionButton(
