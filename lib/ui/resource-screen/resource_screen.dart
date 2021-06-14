@@ -20,7 +20,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
   int current = 0;
   List<House> houses = [];
   List<Room> rooms = [];
-  final Map<String, Map<String,String>> room_devices = {};
+  final Map<String, Map<String,String>> roomDevices = {};
 
   Future<void> getHousesAndRooms() async {
     final responseHouse = await http
@@ -57,12 +57,12 @@ class _ResourceScreenState extends State<ResourceScreen> {
           Iterable iterate = json.decode(responseDevies.body)['data'];
           for (var i in iterate){
             if (i["device"]["name"] == "Buzzer" || i["device"]["name"] == "Despensor"){
-              room_devices.putIfAbsent(i["room"]["name"], () => {});
-              room_devices[i["room"]["name"]].putIfAbsent(i["id"].toString(), () => i["device"]["name"]);
+              roomDevices.putIfAbsent(i["room"]["name"], () => {});
+              roomDevices[i["room"]["name"]].putIfAbsent(i["id"].toString(), () => i["device"]["name"]);
             }
           }
         });
-        print(room_devices);
+        print(roomDevices);
       }
   }
 
@@ -141,7 +141,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
                                           else{
                                             Navigator.push(
                                               context,
-                                              MaterialPageRoute(builder: (context) => DeviceScreen(deviceIdName:room_devices[rooms[index].name])),
+                                              MaterialPageRoute(builder: (context) => DeviceScreen(deviceIdName:roomDevices[rooms[index].name])),
                                             )
                                           }
                                         },
