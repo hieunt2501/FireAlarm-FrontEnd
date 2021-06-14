@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../fire_detection/fire_detected_screen.dart';
 import '../smoke_detection/smoke_detected_screen.dart';
 import '../monitoring/daily_screen.dart';
-import '../monitoring/real_time_screen.dart';
+import '../monitoring/minutely_screen.dart';
 import '../monitoring/hourly_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -150,9 +150,9 @@ class _HomeScreenState extends State<HomeScreen>
         controller: _tabController,
         indicatorColor: Colors.white,
         tabs: <Widget>[
-          Tab(text: "Real-Time"),
+          Tab(text: "Minutely"),
           Tab(text: "Hourly"),
-          Tab(text: "Daily"),
+          // Tab(text: "Daily"),
         ],
       ),
     );
@@ -164,9 +164,9 @@ class _HomeScreenState extends State<HomeScreen>
     return TabBarView(
       controller: _tabController,
       children: <Widget>[
-        RealTimeScreen(),
+        MinutelyScreen(),
         HourlyScreen(),
-        DailyScreen(),
+        // DailyScreen(),
       ],
     );
   }
@@ -221,7 +221,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   // initializing tab controller
   _initTabController() {
-    _tabController = TabController(vsync: this, initialIndex: 0, length: 3);
+    _tabController = TabController(vsync: this, initialIndex: 0, length: 2);
     _tabController.addListener(() {
       setState(() {});
     });

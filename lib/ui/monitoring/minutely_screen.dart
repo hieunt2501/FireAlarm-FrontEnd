@@ -6,16 +6,17 @@ import 'package:flutter/material.dart';
 import '../../services/monitor_services.dart';
 import 'package:firealarm/models/temperature.dart';
 import 'monitor_base_screen.dart';
+import '../../utils/helper_function/helper_function.dart';
 
-class RealTimeScreen extends StatefulWidget {
-  RealTimeScreen();
+class MinutelyScreen extends StatefulWidget {
+  MinutelyScreen();
 
   @override
-  _HourlyScreenState createState() => _HourlyScreenState();
+  _MinutelyScreenState createState() => _MinutelyScreenState();
 }
 
-class _HourlyScreenState extends State<RealTimeScreen>
-    with AutomaticKeepAliveClientMixin<RealTimeScreen> {
+class _MinutelyScreenState extends State<MinutelyScreen>
+    with AutomaticKeepAliveClientMixin<MinutelyScreen> {
   Future<List<Temperature>> _temperatureData; // temperature data list
 
   HashMap dataProp = new HashMap<String, double>(); // data props for passing
@@ -29,7 +30,7 @@ class _HourlyScreenState extends State<RealTimeScreen>
   void setUpTimedFetch() {
     Timer.periodic(Duration(seconds: 5), (timer) {
       setState(() {
-        _temperatureData = MonitorAPIs.fetchTemperature();
+        _temperatureData = MonitorAPIs.fetchTemperature("0", "10");
       });
     });
   }
@@ -37,12 +38,14 @@ class _HourlyScreenState extends State<RealTimeScreen>
   @override
   void initState() {
     super.initState();
-    setUpTimedFetch();
+    // setUpTimedFetch();
+    // _temperatureData = MonitorAPIs.fetchTemperature("0", "10");
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    _temperatureData = MonitorAPIs.fetchTemperature("0", "10");
     return AspectRatio(
       aspectRatio: 1.2,
       child: Container(
@@ -78,6 +81,7 @@ class _HourlyScreenState extends State<RealTimeScreen>
   // process data when successfully get data
   void processData(List<Temperature> tempData) {
     double maxTemp = 0;
+    double minTemp = tempData[0].temperature;
     double maxLength = tempData.length.toDouble();
     temperatureList = [];
     labelList = [];
@@ -88,15 +92,18 @@ class _HourlyScreenState extends State<RealTimeScreen>
     for (int i = 0; i < tempData.length; i++) {
       temp = tempData[i].temperature;
       if (maxTemp < temp) maxTemp = temp;
+      if (minTemp > temp) minTemp = temp;
       sum += temp;
       String hour = tempData[i].time.hour.toString();
       String minute = tempData[i].time.minute.toString();
-      this.temperatureList.insert(0, temp);
+      this.temperatureList.insert(0, HelperFunction.roundDouble(temp, 2));
       this.labelList.insert(0, hour + 'h' + minute);
     }
 
     this.dataProp['maxTemp'] = maxTemp;
+    this.dataProp['minTemp'] = minTemp;
     this.dataProp['maxLength'] = maxLength;
-    this.dataProp['avgTemp'] = sum / tempData.length;
+    this.dataProp['avgTemp'] =
+        HelperFunction.roundDouble(sum / tempData.length, 2);
   }
 }
