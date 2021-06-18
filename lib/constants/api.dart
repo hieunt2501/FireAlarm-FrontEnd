@@ -14,7 +14,7 @@ class APIs {
   static final String baseAuthenticationUrl =
       "multiprojectauthenticationserver.azurewebsites.net";
 
-  static String _userToken = "";
+  static String _userToken = userToken;
   static bool _fireDetected = false;
   static bool _smokeDetected = false;
 

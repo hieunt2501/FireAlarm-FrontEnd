@@ -7,14 +7,15 @@ class MonitorAPIs {
   MonitorAPIs._();
 
   static Future<List<Temperature>> fetchTemperature(
-      String pageSize, String numberOfRecord) async {
+      String pageSize, String numberOfRecord, String token) async {
     var response = await http.get(
         Uri.https(APIs.baseResourceUrl, APIs.deviceLogs, {
           "roomDeviceId": "7",
           "pageSize": pageSize,
           "numberOfRecord": numberOfRecord
         }),
-        headers: {"Authorization": APIs.userToken});
+        // headers: {"Authorization": APIs.userToken});
+        headers: {"Authorization": token});
 
     if (response.statusCode == 200) {
       List<dynamic> body = jsonDecode(response.body)["data"];
@@ -28,8 +29,8 @@ class MonitorAPIs {
       print('');
       return result;
     } else {
-      throw Exception('Failed to load data');
-      // return [];
+      // throw Exception('Failed to load data');
+      return [];
     }
   }
 }

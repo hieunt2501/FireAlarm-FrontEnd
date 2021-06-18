@@ -36,4 +36,20 @@ class HelperFunction {
     double mod = pow(10.0, places);
     return ((value * mod).round().toDouble() / mod);
   }
+
+  static String extractDate(DateTime time) {
+    String day = time.day.toString();
+    String month = time.month.toString();
+    String year = time.year.toString();
+    // String time = time.
+    return day + '/' + month + '/' + year;
+  }
+
+  static String extractTime(DateTime time) {
+    String hour = time.hour.toString();
+    String minute = time.minute.toString();
+    String second = time.second.toString();
+
+    return hour + ':' + minute + ':' + second;
+  }
 }

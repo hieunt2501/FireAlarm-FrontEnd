@@ -5,6 +5,7 @@ import '../../services/monitor_services.dart';
 import 'package:firealarm/models/temperature.dart';
 import '../../utils/helper_function/helper_function.dart';
 import 'monitor_base_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HourlyScreen extends StatefulWidget {
   HourlyScreen();
@@ -25,18 +26,26 @@ class _HourlyScreenState extends State<HourlyScreen>
   bool get wantKeepAlive => false;
 
   // simutaneously call fetch data every 5 seconds
-  void setUpTimedFetch() {
-    Timer.periodic(Duration(seconds: 5), (timer) {
-      setState(() {
-        _temperatureData = MonitorAPIs.fetchTemperature("0", "30");
-      });
+  // void setUpTimedFetch() {
+  //   Timer.periodic(Duration(seconds: 5), (timer) {
+  //     setState(() {
+  //       _temperatureData = MonitorAPIs.fetchTemperature("0", "30");
+  //     });
+  //   });
+  // }
+
+  void fetchData() async {
+    final prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString("user_token");
+    setState(() {
+      _temperatureData = MonitorAPIs.fetchTemperature("0", "30", token);
     });
   }
 
   @override
   void initState() {
     super.initState();
-    setUpTimedFetch();
+    fetchData();
   }
 
   @override
@@ -78,7 +87,6 @@ class _HourlyScreenState extends State<HourlyScreen>
   // process data when successfully get data
   void processData(List<Temperature> tempData) {
     double maxTemp = 0;
-    double minTemp = 0;
 
     HashMap tempMap = new HashMap<String, List<double>>();
     temperatureList = [];

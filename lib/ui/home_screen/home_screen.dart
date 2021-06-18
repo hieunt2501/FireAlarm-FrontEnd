@@ -3,7 +3,7 @@ import 'package:firealarm/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
 import '../fire_detection/fire_detected_screen.dart';
 import '../smoke_detection/smoke_detected_screen.dart';
-import '../monitoring/daily_screen.dart';
+import '../monitoring/log_screen.dart';
 import '../monitoring/minutely_screen.dart';
 import '../monitoring/hourly_screen.dart';
 import 'package:provider/provider.dart';
@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen>
             padding: EdgeInsets.zero,
             children: [
               DrawerHeader(
-                child: Text('Drawer Header'),
+                child: Text(''),
               ),
               ListTile(
                 title: Text('Monitoring'),
@@ -152,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen>
         tabs: <Widget>[
           Tab(text: "Minutely"),
           Tab(text: "Hourly"),
-          // Tab(text: "Daily"),
+          Tab(text: "Log"),
         ],
       ),
     );
@@ -166,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen>
       children: <Widget>[
         MinutelyScreen(),
         HourlyScreen(),
-        // DailyScreen(),
+        LogScreen(),
       ],
     );
   }
@@ -221,7 +221,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   // initializing tab controller
   _initTabController() {
-    _tabController = TabController(vsync: this, initialIndex: 0, length: 2);
+    _tabController = TabController(vsync: this, initialIndex: 0, length: 3);
     _tabController.addListener(() {
       setState(() {});
     });

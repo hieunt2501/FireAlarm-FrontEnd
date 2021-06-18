@@ -7,6 +7,7 @@ import '../../services/monitor_services.dart';
 import 'package:firealarm/models/temperature.dart';
 import 'monitor_base_screen.dart';
 import '../../utils/helper_function/helper_function.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MinutelyScreen extends StatefulWidget {
   MinutelyScreen();
@@ -24,20 +25,29 @@ class _MinutelyScreenState extends State<MinutelyScreen>
   List<double> temperatureList;
 
   // boolean to keep state alive
-  bool get wantKeepAlive => true;
+  bool get wantKeepAlive => false;
 
   // simutaneously call fetch data every 5 seconds
-  void setUpTimedFetch() {
-    Timer.periodic(Duration(seconds: 5), (timer) {
-      setState(() {
-        _temperatureData = MonitorAPIs.fetchTemperature("0", "10");
-      });
+  // void setUpTimedFetch() {
+  //   Timer.periodic(Duration(seconds: 5), (timer) {
+  //     setState(() {
+  //       _temperatureData = MonitorAPIs.fetchTemperature("0", "10");
+  //     });
+  //   });
+  // }
+
+  void fetchData() async {
+    final prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString("user_token");
+    setState(() {
+      _temperatureData = MonitorAPIs.fetchTemperature("0", "10", token);
     });
   }
 
   @override
   void initState() {
     super.initState();
+    fetchData();
     // setUpTimedFetch();
     // _temperatureData = MonitorAPIs.fetchTemperature("0", "10");
   }
@@ -45,7 +55,7 @@ class _MinutelyScreenState extends State<MinutelyScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    _temperatureData = MonitorAPIs.fetchTemperature("0", "10");
+    // _temperatureData = MonitorAPIs.fetchTemperature("0", "10");
     return AspectRatio(
       aspectRatio: 1.2,
       child: Container(
