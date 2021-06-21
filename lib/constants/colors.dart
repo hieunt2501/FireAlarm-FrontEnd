@@ -4,14 +4,18 @@ class AppColors {
   AppColors._(); // this basically makes it so you can't instantiate this class
 
   static List<Color> normalBackground = [
-    Colors.lightGreen[400],
-    Colors.lightGreen[100],
-    Colors.lightGreen[400],
+    // Colors.lightGreen[400],
+    // Colors.lightGreen[100],
+    // Colors.lightGreen[400],
+    Colors.indigo,
+    Colors.indigoAccent
   ];
 
   static List<Color> statBar = [
-    Colors.blueGrey[900],
-    Colors.blueGrey[800],
+    // Colors.blueGrey[900],
+    // Colors.blueGrey[800],
+    Colors.indigo,
+    Colors.indigo,
   ];
   static Color kPrimaryColor = Color(0x66CA8383);
   static Color kSecondaryColor = Color(0xFF6B0000);

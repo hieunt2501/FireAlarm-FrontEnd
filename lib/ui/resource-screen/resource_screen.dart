@@ -20,7 +20,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
   int current = 0;
   List<House> houses = [];
   List<Room> rooms = [];
-  final Map<String, Map<String,String>> roomDevices = {};
+  final Map<String, Map<String, String>> roomDevices = {};
 
   Future<void> getHousesAndRooms() async {
     final responseHouse = await http
@@ -48,22 +48,25 @@ class _ResourceScreenState extends State<ResourceScreen> {
   }
 
   Future<void> getDevicesforRooms() async {
-      final responseDevies = await http.get(Uri.https(APIs.baseResourceUrl, APIs.myDevices), headers: {
-        "Authorization": APIs.userToken,
-        'Content-Type': 'application/json; charset=UTF-8'
-      });
-      if (responseDevies.statusCode == 200){
-        setState(() {
-          Iterable iterate = json.decode(responseDevies.body)['data'];
-          for (var i in iterate){
-            if (i["device"]["name"] == "Buzzer" || i["device"]["name"] == "Despensor"){
-              roomDevices.putIfAbsent(i["room"]["name"], () => {});
-              roomDevices[i["room"]["name"]].putIfAbsent(i["id"].toString(), () => i["device"]["name"]);
-            }
+    final responseDevies = await http
+        .get(Uri.https(APIs.baseResourceUrl, APIs.myDevices), headers: {
+      "Authorization": APIs.userToken,
+      'Content-Type': 'application/json; charset=UTF-8'
+    });
+    if (responseDevies.statusCode == 200) {
+      setState(() {
+        Iterable iterate = json.decode(responseDevies.body)['data'];
+        for (var i in iterate) {
+          if (i["device"]["name"] == "Buzzer" ||
+              i["device"]["name"] == "Despensor") {
+            roomDevices.putIfAbsent(i["room"]["name"], () => {});
+            roomDevices[i["room"]["name"]]
+                .putIfAbsent(i["id"].toString(), () => i["device"]["name"]);
           }
-        });
-        print(roomDevices);
-      }
+        }
+      });
+      print(roomDevices);
+    }
   }
 
   @override
@@ -114,69 +117,112 @@ class _ResourceScreenState extends State<ResourceScreen> {
               SizedBox(
                   height: 520,
                   child: Padding(
-                      padding: EdgeInsets.only(top: 20),
-                      child: houses.length == 0
-                          ? Center(child: CircularProgressIndicator())
-                          : GridView.builder(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      mainAxisSpacing: 20,
-                                      crossAxisSpacing: 10),
-                              itemCount:
-                                  current == 0 ? houses.length : rooms.length,
-                              itemBuilder: (context, index) => Card(
-                                  elevation: 5,
+                    padding: EdgeInsets.only(top: 20),
+                    child: houses.length == 0
+                        ? Center(child: CircularProgressIndicator())
+                        : GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: 20,
+                                    crossAxisSpacing: 10),
+                            itemCount:
+                                current == 0 ? houses.length : rooms.length,
+                            itemBuilder: (context, index) => Card(
+                                  elevation: 20,
+                                  shadowColor: Colors.amber,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(32)),
                                   child: Container(
-                                    padding: EdgeInsets.only(left: 10),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.blue)),
-                                    alignment: Alignment.centerLeft,
-                                    child: SizedBox(
-                                      width: double.infinity,
-                                      height: double.infinity,
-                                      child: RawMaterialButton(
-                                        onPressed: () => {
-                                          if (current == 0) {}
-                                          else{
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(builder: (context) => DeviceScreen(deviceIdName:roomDevices[rooms[index].name])),
-                                            )
-                                          }
-                                        },
-                                        child: Column(
-                                          crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                                current == 0
-                                                    ? "ID: " +
-                                                        houses[index].id.toString()
-                                                    : "",
-                                                style: TextStyle(fontSize: 17),
+                                      padding: EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(colors: [
+                                          Colors.indigo,
+                                          Colors.black
+                                        ]),
+                                      ),
+                                      alignment: Alignment.centerLeft,
+                                      child: SizedBox(
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                        child: RawMaterialButton(
+                                          onPressed: () => {
+                                            if (current == 0)
+                                              {}
+                                            else
+                                              {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          DeviceScreen(
+                                                              deviceIdName:
+                                                                  roomDevices[rooms[
+                                                                          index]
+                                                                      .name])),
+                                                )
+                                              }
+                                          },
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(bottom: 20),
                                               ),
                                               Text(
                                                 current == 0
                                                     ? houses[index].name
                                                     : rooms[index].name,
-                                                style: TextStyle(fontSize: 21),
+                                                style: TextStyle(
+                                                    fontSize: 21,
+                                                    color: Colors.white),
                                               ),
-                                              Text(
-                                                current == 0
-                                                    ? houses[index].address
-                                                    : "",
-                                                style: TextStyle(fontSize: 19),
-                                              )
-                                          ],
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 30),
+                                              ),
+                                              SizedBox(
+                                                  child: Column(
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        current == 0
+                                                            ? "ID: " +
+                                                                houses[index]
+                                                                    .id
+                                                                    .toString()
+                                                            : "",
+                                                        style: TextStyle(
+                                                            fontSize: 17,
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                      SizedBox(width: 50)
+                                                    ],
+                                                  ),
+                                                  Text(
+                                                    current == 0
+                                                        ? "Addr: " +
+                                                            houses[index]
+                                                                .address
+                                                        : "",
+                                                    style: TextStyle(
+                                                        fontSize: 19,
+                                                        color: Colors.white),
+                                                  )
+                                                ],
+                                              ))
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  ),
-                                  )),
-                            ))
+                                      )),
+                                )),
+                  ))
             ],
           )),
       floatingActionButton: FloatingActionButton(
