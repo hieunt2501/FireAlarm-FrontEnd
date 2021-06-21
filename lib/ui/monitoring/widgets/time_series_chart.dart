@@ -1,4 +1,5 @@
 // import 'package:firealarm/models/temperature.dart';
+import 'package:firealarm/constants/colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -75,7 +76,7 @@ class TimeChartState extends State<TimeChart> {
     return LineChartData(
       lineTouchData: LineTouchData(
         touchTooltipData: LineTouchTooltipData(
-          tooltipBgColor: Colors.blueGrey.withOpacity(0.8),
+          tooltipBgColor: AppColors.kPrimaryColor,
         ),
         touchCallback: (LineTouchResponse touchResponse) {},
         handleBuiltInTouches: true,
@@ -92,7 +93,7 @@ class TimeChartState extends State<TimeChart> {
           showTitles: true,
           // reservedSize: 22,
           getTextStyles: (value) => const TextStyle(
-            color: Color(0xff72719b),
+            color: Color(0xFFC94242),
             fontWeight: FontWeight.bold,
             fontSize: 13,
           ),
@@ -136,7 +137,7 @@ class TimeChartState extends State<TimeChart> {
       spots: this.tempSpotList,
       isCurved: true,
       colors: [
-        Colors.blue[800],
+        AppColors.kSecondaryColor,
       ],
       barWidth: 3,
       isStrokeCapRound: true,

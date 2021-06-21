@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:firealarm/constants/api.dart';
 import 'package:firealarm/models/user.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:firealarm/constants/colors.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 class MyProfileScreen extends StatefulWidget {
   @override
@@ -65,53 +67,6 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 ),
                 SizedBox(
                   height: 15,
-                ),
-                Center(
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: 130,
-                        height: 130,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 4,
-                                color:
-                                    Theme.of(context).scaffoldBackgroundColor),
-                            boxShadow: [
-                              BoxShadow(
-                                spreadRadius: 5,
-                                blurRadius: 10,
-                                color: Colors.black.withOpacity(0.1),
-                                offset: Offset(0, 10),
-                              ),
-                            ],
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    "https://media.cooky.vn/usr/g43/420151/avt/c60x60/cooky-avatar-637113450729148354.jpg"))),
-                      ),
-                      Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              color: Colors.pink,
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                  width: 4,
-                                  color: Theme.of(context)
-                                      .scaffoldBackgroundColor),
-                            ),
-                            child: Icon(Icons.camera, color: Colors.white),
-                          )),
-                      SizedBox(
-                        height: 35,
-                      )
-                    ],
-                  ),
                 ),
                 buildTextField("Email", user.email),
                 buildTextField("Phone number", user.phoneNumber),

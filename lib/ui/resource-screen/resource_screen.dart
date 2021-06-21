@@ -88,8 +88,8 @@ class _ResourceScreenState extends State<ResourceScreen> {
                 minWidth: 120,
                 initialLabelIndex: current,
                 icons: [Icons.home, Icons.window],
-                activeBgColor: Colors.lightBlueAccent,
-                inactiveBgColor: Colors.blueGrey,
+                activeBgColor: AppColors.kPrimaryColor,
+                inactiveBgColor: Color(0x665E3B3B),
                 inactiveFgColor: Colors.grey,
                 labels: ['My houses', 'My rooms'],
                 onToggle: (index) {
@@ -137,8 +137,8 @@ class _ResourceScreenState extends State<ResourceScreen> {
                                       padding: EdgeInsets.all(12),
                                       decoration: BoxDecoration(
                                         gradient: LinearGradient(colors: [
-                                          Colors.indigo,
-                                          Colors.black
+                                          Color(0x66812A2A),
+                                          Colors.black87
                                         ]),
                                       ),
                                       alignment: Alignment.centerLeft,
@@ -227,7 +227,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
           )),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        backgroundColor: AppColors.normalBackground[0],
+        backgroundColor: AppColors.kPrimaryColor,
         onPressed: () {
           showDialog(
               context: context,

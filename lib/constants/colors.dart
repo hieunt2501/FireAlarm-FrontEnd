@@ -7,15 +7,13 @@ class AppColors {
     // Colors.lightGreen[400],
     // Colors.lightGreen[100],
     // Colors.lightGreen[400],
-    Colors.indigo,
-    Colors.indigoAccent
+    Colors.yellow[200],
+    Colors.yellow[100]
   ];
 
   static List<Color> statBar = [
-    // Colors.blueGrey[900],
-    // Colors.blueGrey[800],
-    Colors.indigo,
-    Colors.indigo,
+    Colors.blueGrey[900],
+    Colors.blueGrey[800],
   ];
   static Color kPrimaryColor = Color(0x66CA8383);
   static Color kSecondaryColor = Color(0xFF6B0000);
