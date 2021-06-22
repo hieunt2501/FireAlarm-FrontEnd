@@ -121,6 +121,61 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 SizedBox(
                   height: 15,
                 ),
+                Center(
+                  child: Stack(
+                    children: [
+                      MaterialButton(
+                        onPressed: () {
+                          _showPicker(context);
+                        },
+                        child: Container(
+                          width: 140,
+                          height: 140,
+                          decoration: BoxDecoration(
+                            color: _image == null
+                                ? AppColors.kPrimaryColor
+                                : Colors.white,
+                            image: _image == null
+                                ? null
+                                : DecorationImage(image: FileImage(_image)),
+                            border: Border.all(
+                                width: 4,
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor),
+                            boxShadow: [
+                              BoxShadow(
+                                spreadRadius: 5,
+                                blurRadius: 10,
+                                color: Colors.black.withOpacity(0.1),
+                                offset: Offset(0, 10),
+                              ),
+                            ],
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            height: 50,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.pink,
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                  width: 4,
+                                  color: Theme.of(context)
+                                      .scaffoldBackgroundColor),
+                            ),
+                            child: Icon(Icons.camera, color: Colors.white),
+                          )),
+                      SizedBox(
+                        height: 35,
+                      )
+                    ],
+                  ),
+                ),
                 buildTextField("Email", user.email),
                 buildTextField("Phone number", user.phoneNumber),
                 buildTextField("Available houses", "2"),
