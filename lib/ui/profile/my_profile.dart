@@ -17,6 +17,7 @@ class MyProfileScreen extends StatefulWidget {
 }
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
+  File _image;
   User user;
   Future<void> getUser() async {
     final response = await http.get(
@@ -33,6 +34,58 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   void initState() {
     super.initState();
     getUser();
+  }
+
+  Future _imgFromCamera() async {
+    // File image = await ImagePicker.pickImage(
+    //     source: ImageSource.camera, imageQuality: 50);
+    PickedFile image = await ImagePicker().getImage(
+      source: ImageSource.camera,
+    );
+    setState(() {
+      _image = File(image.path);
+    });
+  }
+
+  Future _imgFromGallery() async {
+    // File image = await ImagePicker.pickImage(
+    //     source: ImageSource.gallery, imageQuality: 50);
+    PickedFile image = await ImagePicker().getImage(
+      source: ImageSource.gallery,
+    );
+    setState(() {
+      _image = File(image.path);
+    });
+  }
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Photo Library'),
+                      onTap: () {
+                        _imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      _imgFromCamera();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 
   @override
