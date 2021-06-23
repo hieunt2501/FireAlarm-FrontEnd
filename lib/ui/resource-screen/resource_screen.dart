@@ -131,16 +131,12 @@ class _ResourceScreenState extends State<ResourceScreen> {
                             itemBuilder: (context, index) => Card(
                                   elevation: 20,
                                   shadowColor: Colors.amber,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(32)),
+                                  // shape: RoundedRectangleBorder(
+                                  //     borderRadius: BorderRadius.circular(32),),
                                   child: Container(
                                       padding: EdgeInsets.all(12),
-                                      decoration: BoxDecoration(
-                                        gradient: LinearGradient(colors: [
-                                          Color(0x66812A2A),
-                                          Colors.black87
-                                        ]),
-                                      ),
+                                      decoration:
+                                          BoxDecoration(color: Colors.brown),
                                       alignment: Alignment.centerLeft,
                                       child: SizedBox(
                                         width: double.infinity,
