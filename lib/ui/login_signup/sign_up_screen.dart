@@ -109,14 +109,15 @@ class SignupScreenState extends State<SignupScreen> {
                   child: ElevatedButton(
                       onPressed: () async {
                         FocusScope.of(context).unfocus();
+                        if (isValidInput()) {
+                          bool status = await authProvider.signUp(
+                              email, password, confirm, phone, address);
 
-                        bool status = await authProvider.signUp(
-                            email, password, confirm, phone, address);
-
-                        if (status && isValidInput()) {
-                          Navigator.pop(context);
-                        } else
-                          print("Error?");
+                          if (status) {
+                            Navigator.pop(context);
+                          } else
+                            print("Error?");
+                        }
                       },
                       style: ButtonStyle(
                           minimumSize:
