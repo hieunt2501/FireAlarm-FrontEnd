@@ -40,6 +40,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: GestureDetector(
@@ -94,14 +95,15 @@ class LoginScreenState extends State<LoginScreen> {
                   child: ElevatedButton(
                       onPressed: () async {
                         FocusScope.of(context).unfocus();
-                        final authProvider = Provider.of<AuthProvider>(context);
                         bool status = await authProvider.signIn(
                             this.email, this.password);
 
                         if (status && okToLogin()) {
                           Navigator.pushNamed(context, Routes.home);
                         } else
-                          print("Error?");
+                          setState(() {
+                            message = "Wrong username or password";
+                          });
                       },
                       style: ButtonStyle(
                           minimumSize:
