@@ -8,9 +8,12 @@ class SharedPreferenceHelper {
   static const String fire_Detected = "fire_Detected";
   static const String smoke_Detected = "smoke_Detected";
 
-
   SharedPreferenceHelper() {
     _sharedPreference = SharedPreferences.getInstance();
+  }
+
+  Future<void> clearToken() {
+    return _sharedPreference.then((prefs) => prefs.clear());
   }
 
   Future<bool> get isLoggedIn {
@@ -33,7 +36,7 @@ class SharedPreferenceHelper {
     });
   }
 
-  Future<void> setFireDetected (bool value){
+  Future<void> setFireDetected(bool value) {
     return _sharedPreference.then((prefs) {
       return prefs.setBool(fire_Detected, value);
     });
@@ -45,7 +48,7 @@ class SharedPreferenceHelper {
     });
   }
 
-  Future<void> setSmokeDetected (bool value){
+  Future<void> setSmokeDetected(bool value) {
     return _sharedPreference.then((prefs) {
       return prefs.setBool(smoke_Detected, value);
     });

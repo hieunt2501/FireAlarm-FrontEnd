@@ -30,7 +30,6 @@ status for your UI or widgets to listen.
 
 class AuthProvider extends ChangeNotifier {
   SharedPreferenceHelper _sharedPrefsHelper;
-  SharedPreferences _sharedPreferences;
   Status _status = Status.Uninitialized;
 
   AuthProvider() {
@@ -117,6 +116,7 @@ class AuthProvider extends ChangeNotifier {
 
   Future signOut() async {
     _status = Status.Unauthenticated;
+    await _sharedPrefsHelper.clearToken();
     notifyListeners();
     return Future.delayed(Duration.zero);
   }
