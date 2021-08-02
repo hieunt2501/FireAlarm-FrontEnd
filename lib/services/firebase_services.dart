@@ -6,7 +6,7 @@ import '../constants/api.dart';
 class FirebaseAPIs {
   FirebaseAPIs._();
 
-  static Future<void> sendTokenToServer(String token) async {
+  static Future<int> sendTokenToServer(String token) async {
     final String userToken = APIs.userToken;
     var url = Uri.parse(
         'https://resourceservermultiproject.azurewebsites.net/api/account/updateFirebaseToken');
@@ -24,5 +24,6 @@ class FirebaseAPIs {
 
     print(response.statusCode);
     print(response.body);
+    return response.statusCode;
   }
 }

@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen>
         .getInitialMessage()
         .then((RemoteMessage message) {
       if (message.notification.title == 'Fire detected!') {
+        print('first shit');
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -58,6 +59,7 @@ class _HomeScreenState extends State<HomeScreen>
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       if (message.notification.title == 'Fire detected!') {
+        print('second shit');
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -182,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen>
       // print(message.notification.title);
       // print(message.notification.body);
       // print('#####################################################');
-
+      print('third shit');
       RemoteNotification notification = message.notification;
       AndroidNotification android = message.notification?.android;
       if (notification != null && android != null) {

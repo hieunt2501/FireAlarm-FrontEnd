@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import '../constants/api.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DeviceAPIs {
   DeviceAPIs._();
@@ -34,9 +35,11 @@ class DeviceAPIs {
   }
 
   static Future<bool> checkDevice(String deviceID) async {
+    final prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString("user_token");
     var response = await http.get(
         Uri.https(APIs.baseResourceUrl, APIs.myDevices),
-        headers: {"Authorization": APIs.userToken});
+        headers: {"Authorization": token});
     if (response.statusCode == 200) {
       print('Succeed!');
     } else {

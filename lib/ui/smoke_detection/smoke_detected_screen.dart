@@ -97,12 +97,23 @@ class _SmokeDetectionScreenState extends State<SmokeDetectionScreen> {
                           ),
                           SizedBox(height: 15),
                           FutureBuilder<bool>(
-                            future: DeviceAPIs.checkDevice("14"),
+                            future: DeviceAPIs.checkDevice("10"),
                             builder: (BuildContext context, AsyncSnapshot<bool> snapshot){
-                              if(snapshot.connectionState == ConnectionState.done){
-                                return HelperFunction.buildSwitch(context, snapshot.data, "14");
+                              if(snapshot.connectionState == ConnectionState.waiting){
+                                  return  CircularProgressIndicator();
                               }
-                              return CircularProgressIndicator();
+                              else{
+                                  if (snapshot.hasError){
+                                    print(snapshot.error);
+                                    return  CircularProgressIndicator();
+                                    }
+                                  else
+                                    return HelperFunction.buildSwitch(context, snapshot.data, "10");
+                              }
+                              // if(snapshot.connectionState == ConnectionState.done){
+                              //   return HelperFunction.buildSwitch(context, snapshot.data, "10");
+                              // }
+                              // return CircularProgressIndicator();
                             }
                           )
                         ],

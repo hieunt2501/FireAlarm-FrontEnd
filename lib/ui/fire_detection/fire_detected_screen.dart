@@ -150,12 +150,22 @@ class _FireDetectionScreenState extends State<FireDetectionScreen> {
                                   future: DeviceAPIs.checkDevice("14"),
                                   builder: (BuildContext context,
                                       AsyncSnapshot<bool> snapshot) {
-                                    if (snapshot.connectionState ==
-                                        ConnectionState.done) {
-                                      return HelperFunction.buildSwitch(
-                                          context, snapshot.data, "14");
-                                    }
-                                    return CircularProgressIndicator();
+                                        if(snapshot.connectionState == ConnectionState.waiting){
+                                            return  CircularProgressIndicator();
+                                        }
+                                        else{
+                                            if (snapshot.hasError){
+                                              print(snapshot.error);
+                                              return  CircularProgressIndicator();
+                                              }
+                                            else
+                                              return HelperFunction.buildSwitch(context, snapshot.data, "14");
+                                        }
+                                    // if (snapshot.hasData) {
+                                    //   return HelperFunction.buildSwitch(
+                                    //       context, snapshot.data, "14");
+                                    // }
+                                    // return CircularProgressIndicator();
                                   })
                             ],
                           )

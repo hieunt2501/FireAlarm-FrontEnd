@@ -1,0 +1,347 @@
+* commit de71151e2897d40550154e6ef3ab4837506beef3 (HEAD -> main, origin/main, origin/HEAD)
+| Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| Date:   Mon Jul 26 22:30:57 2021 +0700
+| 
+|     fix run
+| 
+* commit 1a64e4c5935ca3a04e6e2876a8a2d6f53cb07462
+| Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| Date:   Mon Jul 26 22:02:25 2021 +0700
+| 
+|     pull
+| 
+* commit d7d0970daa2f4d6e22e82a0c18f45c390d807319
+| Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| Date:   Thu Jun 24 20:01:35 2021 +0700
+| 
+|     update login and sign up
+| 
+* commit 1edbb79d72f37fce33028be59115d20a5969e3b9
+| Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| Date:   Thu Jun 24 19:42:05 2021 +0700
+| 
+|     update signup check valid email
+| 
+* commit b64701972a5d07abf170d94e8026519cf884e7ce (origin/develop)
+| Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| Date:   Wed Jun 23 22:55:47 2021 +0700
+| 
+|     change resource screen color
+| 
+* commit ce5aec5d56d6c3d8b283c70b7a712f00deafefbd
+| Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| Date:   Tue Jun 22 23:46:24 2021 +0700
+| 
+|     finish combine UI and function of load image to avatar
+| 
+* commit d78534d010cc8e850ba6b534e655a97063e0aeb1
+| Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| Date:   Tue Jun 22 14:54:52 2021 +0700
+| 
+|     load image file component successfully for avatar
+| 
+* commit 46c63e431abda77ee0ff89e7244ae3ca412270cd
+| Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| Date:   Mon Jun 21 23:41:40 2021 +0700
+| 
+|     finish UI for home screen, finish edit resource screen
+| 
+* commit f32a377862a3b7caf7ce558452c1d517d0e13faa
+| Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| Date:   Mon Jun 21 22:50:30 2021 +0700
+| 
+|     fix UI for resource-screen
+| 
+* commit ae3e5741918acf31a4f920cab93b4049264c34a3
+| Author: theciderizer <nthieu2501@gmail.com>
+| Date:   Fri Jun 18 21:59:51 2021 +0700
+| 
+|     add log screen
+| 
+* commit d933f17feec33ad4b55741537a7cd9008294d0f2
+| Author: Huy Nguyen <nghuy1290@gmail.com>
+| Date:   Tue Jun 15 01:02:14 2021 +0700
+| 
+|     Completed Device controlling screen
+|   
+*   commit adfc51de237388c074170b92ddd243a2fa497f86
+|\  Merge: dfaa9cc ffed4b2
+| | Author: Huy Nguyen <nghuy1290@gmail.com>
+| | Date:   Mon Jun 14 17:10:45 2021 +0700
+| | 
+| |     Added button for resource room screen - navigate to Devices screen
+| | 
+| * commit ffed4b2face8dc9766f2b9b561def010f7a5c31d
+| | Author: theciderizer <nthieu2501@gmail.com>
+| | Date:   Wed Jun 9 19:41:21 2021 +0700
+| | 
+| |     fix monitoring feature
+| | 
+* | commit dfaa9cc9b569377b283104046341fc790e23137d
+|/  Author: Huy Nguyen <nghuy1290@gmail.com>
+|   Date:   Mon Jun 14 17:08:47 2021 +0700
+|   
+|       Added button for resource room screen - navigate to Devices screen
+|   
+*   commit 6139c88fb953ce20a0000335d2ac0ddfbe4dc35a
+|\  Merge: 0ea520a ec05215
+| | Author: Huy Nguyen <nghuy1290@gmail.com>
+| | Date:   Wed Jun 9 16:00:13 2021 +0700
+| | 
+| |     fixed fire detection screen UI
+| |   
+| *   commit ec05215f304c7f7ec87a6bbe58a6ab9a9c8158d8
+| |\  Merge: 8bf2abe 5cdf6d9
+| | | Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| | | Date:   Wed Jun 9 15:25:37 2021 +0700
+| | | 
+| | |     finish profile, update add/display houses/rooms
+| | | 
+| * | commit 8bf2abe36a42f6587caa07042649e867e0991c08
+| | | Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| | | Date:   Wed Jun 9 14:42:07 2021 +0700
+| | | 
+| | |     pull
+| | | 
+* | | commit 0ea520a6eebf912b14b1c3177efa9d4ff7ac601c
+| |/  Author: Huy Nguyen <nghuy1290@gmail.com>
+|/|   Date:   Wed Jun 9 15:58:22 2021 +0700
+| |   
+| |       fixed fire detection screen UI
+| | 
+* | commit 5cdf6d903865a5c59e736e63d3fc33f3d4b47a31
+|/  Author: Huy Nguyen <nghuy1290@gmail.com>
+|   Date:   Tue Jun 8 21:08:01 2021 +0700
+|   
+|       Added instructions in case of fire
+| 
+* commit 8c6ff10efd5d18490b023ae2e710fc1c9b072bef
+| Author: Huy Nguyen <nghuy1290@gmail.com>
+| Date:   Mon Jun 7 14:21:33 2021 +0700
+| 
+|     Refactored utils
+| 
+* commit 86bd088d08a61732757b8ad03c0e971775ebc59b
+| Author: Huy Nguyen <nghuy1290@gmail.com>
+| Date:   Mon Jun 7 14:15:55 2021 +0700
+| 
+|     Added custom switch button for convenience
+| 
+* commit af2a06d3341b77c6ba4c083f40f06efb79ab4007
+| Author: Huy Nguyen <nghuy1290@gmail.com>
+| Date:   Mon Jun 7 09:07:10 2021 +0700
+| 
+|     added call-114
+|   
+*   commit a6f54801d4fb9b2d20c3aa2d6d7ea79d78828a7e
+|\  Merge: bee2fd0 5a9ced0
+| | Author: Huy Nguyen <nghuy1290@gmail.com>
+| | Date:   Mon Jun 7 08:33:33 2021 +0700
+| | 
+| |     Fixed detection screens
+| | 
+| * commit 5a9ced05801d7fa939848110e6f304d21c99bcec
+| | Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| | Date:   Sun Jun 6 17:32:52 2021 +0700
+| | 
+| |     fix conflicts
+| | 
+* | commit bee2fd07b23bf7b15db401687e572cb3a834e1fa
+|/  Author: Huy Nguyen <nghuy1290@gmail.com>
+|   Date:   Mon Jun 7 08:31:01 2021 +0700
+|   
+|       Fixed detection screens
+| 
+* commit abf4839a0f5df53525c0c96b743bf9cdf8dbabd3
+| Author: Huy Nguyen <nghuy1290@gmail.com>
+| Date:   Sun Jun 6 00:02:59 2021 +0700
+| 
+|     Completed handling switch buttons, added utils and modified shared preference
+|   
+| * commit e33ee7d0b3d10858c5ee4651927486bfae8d4d80 (origin/feat/signup)
+|/  Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+|   Date:   Sun Jun 6 01:28:00 2021 +0700
+|   
+|       update signup
+| 
+* commit 0d2c1b774abc022e84f1f9f99f14aa786e4fbcba
+| Author: Huy Nguyen <nghuy1290@gmail.com>
+| Date:   Sat Jun 5 15:07:16 2021 +0700
+| 
+|     Added fetch data from server for switches - uncompleted
+| 
+* commit 9688c89e91449beaed458086ad584a67c8abb643
+| Author: Huy Nguyen <nghuy1290@gmail.com>
+| Date:   Sat Jun 5 00:08:03 2021 +0700
+| 
+|     Added basic MyDevices Page UI
+| 
+* commit 280750ae2221f1696f4cef3d4004875192eac024
+| Author: Huy Nguyen <nghuy1290@gmail.com>
+| Date:   Fri Jun 4 23:27:32 2021 +0700
+| 
+|     added on-tap screen switch background notification
+| 
+* commit 844204481e8f78d0d1a24661aec82e7befa9e65d
+| Author: theciderizer <nthieu2501@gmail.com>
+| Date:   Fri Jun 4 00:56:07 2021 +0700
+| 
+|     Fix drawer state
+| 
+* commit 14c4348fa2d523725842464ff1d2125f36e26dad
+| Author: theciderizer <nthieu2501@gmail.com>
+| Date:   Thu Jun 3 20:13:29 2021 +0700
+| 
+|     add Provider state management and fix local storage
+|   
+*   commit f00c51c134481ffdc8060e7c9447341519e1bf24
+|\  Merge: 834f8ec bcef657
+| | Author: PantheraXpoint <48640044+PantheraXpoint@users.noreply.github.com>
+| | Date:   Wed Jun 2 23:21:01 2021 +0700
+| | 
+| |     Merge pull request #2 from hieunt2501/updated_develop
+| |     
+| |     Updated develop
+| |   
+| *   commit bcef657951f7fdf93dd190dd90d18bc7d69e23fe (origin/updated_develop)
+| |\  Merge: f7c8f97 834f8ec
+| |/  Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+|/|   Date:   Wed Jun 2 23:15:33 2021 +0700
+| |   
+| |       Merge branch 'develop' of https://github.com/hieunt2501/FireAlarm-FrontEnd into updated_develop
+| | 
+* | commit 834f8ecf858ba70ea092122bfb1e579d038297e7
+| | Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| | Date:   Wed Jun 2 22:20:48 2021 +0700
+| | 
+| |     update
+| | 
+| * commit f7c8f97f21a814c5c7ac2436dfc0232a05e6d7ea
+| | Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| | Date:   Wed Jun 2 22:51:15 2021 +0700
+| | 
+| |     "add login"
+| |   
+| *   commit bed9e6ade87292e6432ecdc09fe714f8bc5f4e40
+| |\  Merge: a5213f2 4a92c49
+| |/  Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+|/|   Date:   Wed Jun 2 22:41:18 2021 +0700
+| |   
+| |       Merge branch 'develop' of https://github.com/hieunt2501/FireAlarm-FrontEnd into updated_develop
+| | 
+* | commit 4a92c4986443f5505db3c5029b17c40e823053b9
+| | Author: theciderizer <nthieu2501@gmail.com>
+| | Date:   Tue Jun 1 15:50:44 2021 +0700
+| | 
+| |     refactor API file structure, modified monitoring, add basic drawer functions and profile page
+| | 
+* | commit 3f565558b5fc6808a35e540e255cf0dbc2fb4520
+| | Author: Huy Nguyen <nghuy1290@gmail.com>
+| | Date:   Sun May 30 13:03:58 2021 +0700
+| | 
+| |     Added smoke detection and controlling, fix UI
+| | 
+* | commit 9cdf63e4d86bbbc3dfcc14896a7800fbc70d7074
+| | Author: theciderizer <nthieu2501@gmail.com>
+| | Date:   Fri May 28 00:56:15 2021 +0700
+| | 
+| |     refactor monitoring screen and file structure
+| | 
+* | commit 382d663759a770cb110c69ed24e887b6fed64b47
+| | Author: theciderizer <nthieu2501@gmail.com>
+| | Date:   Thu May 27 17:51:02 2021 +0700
+| | 
+| |     add develop branch
+| | 
+* | commit bf8ec293f965d940eb773bdb4b0108ef2594aeb3
+| | Author: Huy Nguyen <nghuy1290@gmail.com>
+| | Date:   Fri May 21 21:32:08 2021 +0700
+| | 
+| |     trash commit
+| | 
+* | commit 716064bd43d3b11b001d906c7817e32aef879637
+| | Author: Huy Nguyen <nghuy1290@gmail.com>
+| | Date:   Fri May 21 21:30:15 2021 +0700
+| | 
+| |     Fixed toogle button in fire detection screen
+| | 
+* | commit 0a5baee7bfe421b6b70ac5f0c2ffbf8c80317bcf
+| | Author: Huy Nguyen <nghuy1290@gmail.com>
+| | Date:   Fri May 21 11:27:24 2021 +0700
+| | 
+| |     Merged fire detection screen, added function to resend FCM token to back-end, navigate app according to FCM message
+| | 
+| * commit a5213f25d3a780196be112e36d66a79b0ea361a2
+| | Author: PantheraXpoint <nhatquang.panthera0207@gmail.com>
+| | Date:   Wed Jun 2 21:28:00 2021 +0700
+| | 
+| |     add_login
+| |     
+| |     update
+| | 
+| * commit 0ca098616d0209930b68cb2a02b632f2c9406a44
+|/  Author: PantheraXpoint <48640044+PantheraXpoint@users.noreply.github.com>
+|   Date:   Fri May 21 01:46:51 2021 +0700
+|   
+|       update
+| 
+* commit 6280d22110dc9ce3b035144fec1ce01231062b79 (origin/monitoring)
+| Author: theciderizer <nthieu2501@gmail.com>
+| Date:   Thu May 20 18:17:38 2021 +0700
+| 
+|     Add gas concentration data fetching and fix UI
+| 
+* commit fcd3ba29515f0c844c7bdd1044435854deafa8b8
+| Author: theciderizer <nthieu2501@gmail.com>
+| Date:   Thu May 20 02:35:05 2021 +0700
+| 
+|     add real times fetching
+|   
+| * commit 5ba30f21e3c681adf76772c52d179f810fb77865 (origin/huy-branch)
+| | Author: Huy Nguyen <nghuy1290@gmail.com>
+| | Date:   Fri May 21 02:10:38 2021 +0700
+| | 
+| |     Merged fire detection screen, added function to resend FCM token to back-end, navigate app according to FCM message
+| | 
+| * commit 26e745c8dfbb77b21ad9e53cf7366b3c5435719d
+|/  Author: Huy Nguyen <nghuy1290@gmail.com>
+|   Date:   Wed May 19 22:05:38 2021 +0700
+|   
+|       re-upload sprinkle screen, now with fire alarm, sprinkle panel and firebase cloud messaging
+|   
+*   commit 20b27616a4240b16d134e1133cc8f286675ba643
+|\  Merge: b25e32d f80f84e
+| | Author: theciderizer <nthieu2501@gmail.com>
+| | Date:   Wed May 19 19:55:38 2021 +0700
+| | 
+| |     Merge branch 'main' of github.com:theciderizer/FireAlarm-FrontEnd into main
+| | 
+| * commit f80f84eb3bd64a03124578cd333d90f94738aa7b
+| | Author: Hieu Nguyen <49389229+theciderizer@users.noreply.github.com>
+| | Date:   Tue May 18 18:21:40 2021 +0700
+| | 
+| |     Update README.md
+| | 
+* | commit b25e32d318b2fd668911b5f140d85853497c09d0
+|/  Author: theciderizer <nthieu2501@gmail.com>
+|   Date:   Wed May 19 19:54:47 2021 +0700
+|   
+|       Add Monitor API calling for Temperature data
+| 
+* commit 208c72757a910b1a94fdd23362e6d3f3b0c38128
+| Author: theciderizer <nthieu2501@gmail.com>
+| Date:   Tue May 18 18:20:18 2021 +0700
+| 
+|     first commit
+| 
+* commit 37a97dde0f63dc9b9937a8f5177e3d672d368bfd
+| Author: theciderizer <nthieu2501@gmail.com>
+| Date:   Tue May 18 17:59:13 2021 +0700
+| 
+|     fix monitoring UI
+| 
+* commit 4bc473d15d69575ce64ae042c54009bf798de819
+  Author: theciderizer <nthieu2501@gmail.com>
+  Date:   Tue May 18 17:28:38 2021 +0700
+  
+      add Monitoring UI

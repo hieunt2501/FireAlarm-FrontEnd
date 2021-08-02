@@ -7,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:provider/provider.dart';
 import './ui/my_app.dart';
 import './services/firebase_services.dart';
+import './caches/sharedpref/shared_preference_helper.dart';
 
 // Firebase background handling
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -15,6 +16,8 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 
 Future<Null> main() async {
+  // create a shared pref object
+  SharedPreferenceHelper _sharedPrefsHelper;
   WidgetsFlutterBinding.ensureInitialized();
 
 // #region Connect Firebase
@@ -25,11 +28,16 @@ Future<Null> main() async {
     print(token);
     token = token.toString();
     FirebaseAPIs.sendTokenToServer(token);
+    _sharedPrefsHelper = SharedPreferenceHelper();
+    _sharedPrefsHelper.setFirebaseToken(token);
   });
 
   await FirebaseMessaging.instance.getToken().then((value) {
     print('#####################################################');
     print(value);
+    String token = value.toString();
+    _sharedPrefsHelper = SharedPreferenceHelper();
+    _sharedPrefsHelper.setFirebaseToken(token);
   });
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 // #endregion

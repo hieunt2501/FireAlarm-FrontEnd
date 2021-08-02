@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constants/api.dart';
 import 'dart:convert';
+import '../services/firebase_services.dart';
 // import '../services/auth_services.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 // import '../models/user.dart';
@@ -104,6 +105,17 @@ class AuthProvider extends ChangeNotifier {
       _sharedPrefsHelper.setToken(token);
       _sharedPrefsHelper.setFireDetected(false);
       _sharedPrefsHelper.setSmokeDetected(false);
+
+      // send Firebase Token to server
+      String firebaseCode = await _sharedPrefsHelper.firebaseToken;
+      int code = await FirebaseAPIs.sendTokenToServer(firebaseCode);
+      if (code == 200){
+        print("Send Firebase code successfully!");
+      }
+      else{
+        print(code);
+      }
+      
       // _sharedPreferences.setString('auth_token', token);
       notifyListeners();
       return true;

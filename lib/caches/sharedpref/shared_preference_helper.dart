@@ -7,6 +7,7 @@ class SharedPreferenceHelper {
   static const String user_Token = "user_token";
   static const String fire_Detected = "fire_Detected";
   static const String smoke_Detected = "smoke_Detected";
+  static const String firebase_Token = "firebase_Token";
 
   SharedPreferenceHelper() {
     _sharedPreference = SharedPreferences.getInstance();
@@ -33,6 +34,18 @@ class SharedPreferenceHelper {
   Future<String> get userToken {
     return _sharedPreference.then((prefs) {
       return prefs.getString(user_Token) ?? null;
+    });
+  }
+
+  Future<void> setFirebaseToken(String token) {
+    return _sharedPreference.then((prefs) {
+      return prefs.setString(firebase_Token, token);
+    });
+  }
+
+  Future<String> get firebaseToken {
+    return _sharedPreference.then((prefs) {
+      return prefs.getString(firebase_Token) ?? null;
     });
   }
 
