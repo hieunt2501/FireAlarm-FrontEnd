@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:firealarm/caches/sharedpref/shared_preference_helper.dart';
 import 'package:firealarm/constants/api.dart';
 import 'package:firealarm/models/user.dart';
 import 'package:firealarm/providers/auth_provider.dart';
@@ -17,12 +18,14 @@ class MyProfileScreen extends StatefulWidget {
 }
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
+  SharedPreferenceHelper helper = SharedPreferenceHelper();
   File _image;
   User user;
   Future<void> getUser() async {
+    final token = await helper.userToken;
     final response = await http.get(
         Uri.https(APIs.baseResourceUrl, APIs.instruction),
-        headers: {"Authorization": APIs.userToken});
+        headers: {"Authorization": token});
     if (response.statusCode == 200) {
       setState(() {
         user = User.fromJson(json.decode(response.body));
@@ -178,15 +181,15 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 ),
                 buildTextField("Email", user.email),
                 buildTextField("Phone number", user.phoneNumber),
-                buildTextField("Available houses", "2"),
-                buildTextField("Available rooms", "5"),
-                buildTextField("Available devices", "DHT11"),
+                buildTextField("Available houses", user.houseNum.toString()),
+                buildTextField("Available rooms", user.roomNum.toString()),
+                buildTextField("Available devices", user.deviceNum.toString()),
                 Padding(
                   padding: EdgeInsets.only(top: 15),
                   child: ElevatedButton(
                       onPressed: () async {
                         await authProvider.signOut();
-                        Navigator.pushNamed(context, Routes.login);
+                        // Navigator.pushNamed(context, Routes.login);
                       },
                       style: ButtonStyle(
                           minimumSize:
